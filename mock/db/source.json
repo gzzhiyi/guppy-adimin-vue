@@ -1,0 +1,37 @@
+{
+  "source_upload": {
+    "ret": 0,
+    "msg": "请求成功！",
+    "data": {
+      "old_filename": "abc.jpg",
+      "src": "http://www.huolala.cn/abc.jpg"
+    }
+  },
+  "source_list": {
+    "ret": 0,
+    "msg": "请求成功！",
+    "data": {
+      "page_no": 1,
+      "max_page": 123,
+      "total": 100,
+      "data_list": [
+        {
+          "id": 1,
+          "proj_name": "项目1",
+          "user_name": "stanley.he",
+          "old_filename": "banner.png",
+          "src": "https://ss1.baidu.com/9vo3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=c9c08506a0c3793162688029dbc4b784/a1ec08fa513d2697e8de4f5d5afbb2fb4316d8a5.jpg",
+          "create_time": "2019-11-04 20:00:50"
+        },
+        {
+          "id": 1,
+          "proj_name": "项目2",
+          "user_name": "stanley.he",
+          "old_filename": "logo.png",
+          "src": "https://www.huolala.cn/rs/img/img_ab_sb.png",
+          "create_time": "2019-11-04 21:00:50"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "project_add": {
+    "ret": 0,
+    "msg": "请求成功！",
+    "data": {
+      "proj_id": 1
+    }
+  },
+  "project_update": {
+    "ret": 0,
+    "msg": "请求成功！",
+    "data": {
+      "proj_id": 1
+    }
+  },
+  "project_list": {
+    "ret": 0,
+    "msg": "请求成功！",
+    "data": {
+      "page_no": 1,
+      "max_page": 123,
+      "total": 100,
+      "data_list": [
+        {
+          "proj_id": 1,
+          "proj_name": "项目1",
+          "department_id": "d1",
+          "domain": "http://test.cdn.huolala.cn",
+          "bucket": "test",
+          "access_key_id": "1234",
+          "access_key_secret": "abcd"
+        },
+        {
+          "proj_id": 2,
+          "proj_name": "项目2",
+          "department_id": "d2",
+          "domain": "http://test2.cdn.huolala.cn",
+          "bucket": "test2",
+          "access_key_id": "1234",
+          "access_key_secret": "abcd"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+    "presets": ["es2015", "stage-3", "env"],
+    "plugins": [
+      "syntax-dynamic-import",
+      "transform-runtime",
+      "transform-async-to-generator"
+    ],
+    "comments": false
+}
