@@ -204,7 +204,7 @@
       top: 0;
       left: 0;
       height: 100%;
-      transition: width .3s;
+      transition: width @transition-time;
     }
     &__logo {
       display: flex;
@@ -242,13 +242,13 @@
         display: flex;
         align-items: center;
         position: absolute;
-        right: 0;
         top: 0;
+        right: 0;
         height: 100%;
-        padding-right: 10px;
+        padding-right: @spacing-base;
         cursor: pointer;
         .user-info__avatar {
-          margin-left: 10px;
+          margin-left: @spacing-base;
         }
         .user-info__name {
           display: inline-block;
@@ -269,13 +269,13 @@
     }
     &__content {
       position: absolute;
+      z-index: 1;
       top: 101px;
       left: 200px;
       right: 0;
       bottom: 0;
       overflow: auto;
-      z-index: 1;
-      transition: left .3s;
+      transition: left @animation-time;
       &--shrink {
         left: 60px;
       }

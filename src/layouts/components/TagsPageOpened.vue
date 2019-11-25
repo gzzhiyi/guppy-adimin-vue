@@ -1,40 +1,45 @@
 <template>
-  <div
-    ref="scrollCon"
-    class="tags"
-  >
+  <div class="tags">
     <div class="tags__option">
-      <Dropdown transfer @on-click="handleTagsOption">
-        <Button size="small" type="primary">
+      <Dropdown
+        transfer
+        @on-click="handleTagsOption"
+      >
+        <Button
+          size="small"
+          type="primary"
+        >
           标签选项
           <Icon type="md-arrow-dropdown" />
         </Button>
         <DropdownMenu slot="list">
-          <DropdownItem name="clearAll">关闭所有</DropdownItem>
-          <DropdownItem name="clearOthers">关闭其他</DropdownItem>
+          <DropdownItem name="clearAll">
+            关闭所有
+          </DropdownItem>
+          <DropdownItem name="clearOthers">
+            关闭其他
+          </DropdownItem>
         </DropdownMenu>
       </Dropdown>
     </div>
-    <div class="tag__body">
-      <Tag
-        type="dot"
-        v-for="item in pageTagsList"
-        :key="item.name"
-        :name="item.name"
-        @on-close="closePage"
-        @click.native="linkTo(item)"
-        :closable="item.name !== 'home'"
-        :color="item.children ? (item.children[0].name === currentPageName ? 'blue' : 'default') : (item.name === currentPageName ? 'blue' : 'default')"
-      >
-        {{ item.title }}
-      </Tag>
-    </div>
+    <Tag
+      type="dot"
+      class="tag"
+      v-for="item in pageTagsList"
+      :key="item.name"
+      :name="item.name"
+      @on-close="closePage"
+      @click.native="linkTo(item)"
+      :closable="item.name !== 'home'"
+      :color="item.children ? (item.children[0].name === currentPageName ? 'blue' : 'default') : (item.name === currentPageName ? 'blue' : 'default')"
+    >
+      {{ item.title }}
+    </Tag>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'tagsPageOpened',
     data () {
       return {
         currentPageName: this.$route.name,
@@ -122,19 +127,14 @@
 </script>
 
 <style lang="less" scoped>
+  @import (reference) "../../assets/styles/common.less";
+
   .tags {
     position: relative;
     padding-right: 120px;
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    &__body {
-      position: absolute;
-      padding: 2px 10px;
-      overflow: visible;
-      white-space: nowrap;
-      transition: left .3s ease;
-    }
     &__option {
       position: absolute;
       z-index: 1;
@@ -145,6 +145,11 @@
       padding-top: 8px;
       text-align: center;
       box-sizing: border-box;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      font-size: @font-size-small;
     }
   }
 </style>

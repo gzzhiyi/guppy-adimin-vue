@@ -42,7 +42,6 @@
 
 <script>
   export default {
-    name: 'sidebarMenuShrink',
     props: {
       menuList: {
         type: Array
@@ -60,12 +59,18 @@
 </script>
 
 <style lang="less" scoped>
-  .sidebar-menu-shrink-item {
-    text-align: left;
-  }
-  .sidebar-menu-shrink-btn {
-    width: 59px;
-    height: auto;
-    padding: 10px 0;
+  @import (reference) "../../../assets/styles/common.less";
+
+  .sidebar-menu-shrink {
+    margin-top: 1px;
+    &-item {
+      text-align: left;
+    }
+    &-btn {
+      width: 59px;
+      height: auto;
+      padding: 10px 0;
+      border-radius: 0;
+    }
   }
 </style>

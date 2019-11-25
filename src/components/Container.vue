@@ -1,5 +1,8 @@
 <template>
-  <div class="page" :style="{ backgroundColor: bgColor }">
+  <div
+    class="page"
+    :style="{ backgroundColor: bgColor }"
+  >
     <slot></slot>
   </div>
 </template>

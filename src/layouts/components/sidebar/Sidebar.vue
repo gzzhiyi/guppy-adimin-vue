@@ -1,9 +1,23 @@
 <template>
-  <div class="sidebar" :class="shrink && 'sidebar--shrink'">
+  <div
+    class="sidebar"
+    :class="shrink && 'sidebar--shrink'"
+  >
     <slot name="top"></slot>
     <div class="menu">
-      <sidebar-menu v-show="!shrink" :menu-list="menuList" :open-names="openNames" @on-change="handleChange"></sidebar-menu>
-      <sidebar-menu-shrink v-show="shrink" :menu-list="menuList" @on-change="handleChange"></sidebar-menu-shrink>
+      <sidebar-menu
+        v-show="!shrink"
+        :menu-list="menuList"
+        :open-names="openNames"
+        @on-change="handleChange"
+      >
+      </sidebar-menu>
+      <sidebar-menu-shrink
+        v-show="shrink"
+        :menu-list="menuList"
+        @on-change="handleChange"
+      >
+      </sidebar-menu-shrink>
     </div>
   </div>
 </template>
@@ -13,7 +27,6 @@
   import sidebarMenuShrink from './SidebarMenuShrink.vue'
 
   export default {
-    name: 'sidebar',
     components: {
       sidebarMenu,
       sidebarMenuShrink
@@ -64,7 +77,7 @@
     }
     .menu {
       flex: 1;
-      box-shadow: 0 0 1px inset #ccc;
+      box-shadow: 0 0 1px inset #aaa;
     }
   }
 </style>
