@@ -7,7 +7,7 @@ import { appRouter } from './router/router'
 import { router } from './router/index'
 import App from './App.vue'
 import 'view-design/dist/styles/iview.css'
-import './assets/styles/themes/default/style.less'
+import './assets/styles/style.less'
 
 /** Axios 配置 */
 axios.defaults.baseURL = process.env.API_HOST

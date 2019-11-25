@@ -1,6 +1,10 @@
 <template>
   <Container>
     <Header>
+      <Button @click="handleAdd">
+        <Icon type="md-add" />
+        添加项目
+      </Button>
       <Button @click="handleToggleSearchPanel">
         <Icon type="md-search" />
         搜索
@@ -16,6 +20,7 @@
         <Input v-model="userName" placeholder="用户名" style="width: 200px" />
         <DatePicker type="datetime" :value="startTime" @on-change="onStartTimeChange" placeholder="开始时间"></DatePicker>
         <DatePicker type="datetime" :value="endTime" @on-change="onEndTimeChange" placeholder="结束时间"></DatePicker>
+        <Button type="primary">搜索</Button>
       </SearchPanel>
       <Table :columns="columns" :data="resourceList" :loading="loading">
         <template slot-scope="{ row }" slot="action">
@@ -114,7 +119,7 @@
         }
       ]
       return {
-        searchPanelVisible: true,
+        searchPanelVisible: false,
         columns: columns,
         projectList: [],
         resourceList: [],

@@ -31,11 +31,10 @@
 </script>
 
 <style lang="less" scoped>
-  @import (reference) "../assets/styles/themes/default/common.less";
+  @import (reference) "../assets/styles/common.less";
 
   .search-panel {
-    padding: @spacing-base;
-    background-color: @search-panel-bg-color;
+    padding-bottom: @spacing-base;
     border-bottom: 1px @border-divider-color solid;
   }
 </style>

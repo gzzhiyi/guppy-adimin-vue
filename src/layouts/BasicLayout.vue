@@ -192,7 +192,7 @@
 </script>
 
 <style lang="less" scoped>
-  @import (reference) "../assets/styles/themes/default/common.less";
+  @import (reference) "../assets/styles/common.less";
 
   .main {
     position: absolute;
@@ -200,7 +200,7 @@
     height: 100%;
     &__sidebar {
       position: fixed;
-      z-index: 21;
+      z-index: 10;
       top: 0;
       left: 0;
       height: 100%;
@@ -236,7 +236,7 @@
         }
       }
       .breadcrumb {
-        padding: 0 15px;
+        padding: 0 @spacing-base;
       }
       .user-info {
         display: flex;
@@ -267,7 +267,7 @@
       padding: 0 @spacing-base;
       overflow: hidden;
     }
-    .main__content {
+    &__content {
       position: absolute;
       top: 101px;
       left: 200px;

@@ -14,7 +14,7 @@
 </script>
 
 <style lang="less" scoped>
-  @import (reference) "../assets/styles/themes/default/common.less";
+  @import (reference) "../assets/styles/common.less";
 
   .footer {
     display: flex;

@@ -14,8 +14,11 @@ body {
 /**
  * iView UI Reset
  */
+.ivu-input {
+  border-radius: @border-radius-small;
+}
 .ivu-btn {
-  border-radius: 2px;
+  border-radius: @border-radius-small;
   &-default {
     color: @font-color-secondary;
     border-color: @border-light-color;
@@ -27,7 +30,7 @@ body {
 
 .ivu-modal {
   &-content {
-    padding: 24px;
+    padding: @spacing-large;
     border-radius: @border-radius-small;
   }
   &-header {
@@ -51,7 +54,7 @@ body {
   border-top: 1px @siderbar-bg-color solid;
   border-bottom: 1px @siderbar-bg-color solid;
   & > i {
-    margin-right: 10px !important;
+    margin-right: @spacing-base !important;
   }
   &-selected {
     color: @font-color-secondary !important;

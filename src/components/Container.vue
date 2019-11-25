@@ -13,11 +13,11 @@
 </script>
 
 <style lang="less" scoped>
-  @import (reference) "../assets/styles/themes/default/common.less";
+  @import (reference) "../assets/styles/common.less";
 
   .page {
     height: 100%;
-    padding: @spacing-base;
+    padding: @spacing-large;
     background-color: @page-bg-color;
     overflow: auto;
   }
