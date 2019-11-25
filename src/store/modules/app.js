@@ -201,14 +201,6 @@ export default {
       state.currentPageName = name
     },
     /**
-     * 设置用户头像
-     * @param {!Object} state
-     * @param {!string} path - 头像路径
-     */
-    setAvator (state, path) {
-      state.avatorImgPath = path
-    },
-    /**
      * 清空已打开子菜单
      * @param {!Object} state
      */

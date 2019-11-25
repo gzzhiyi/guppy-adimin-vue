@@ -5,7 +5,8 @@ export default {
     token: '',
     userId: '',
     userName: '',
-    realName: ''
+    realName: '',
+    avatorPath: ''
   },
   mutations: {
     /**
@@ -43,6 +44,14 @@ export default {
     setRealName (state, name) {
       state.realName = name || ''
       Cookies.set('realName', name)
+    },
+    /**
+     * 设置用户头像
+     * @param {!Object} state
+     * @param {!string} path - 头像路径
+     */
+    setAvator (state, path) {
+      state.avatorPath = path
     },
     /**
      * 用户退出
