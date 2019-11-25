@@ -33,7 +33,7 @@
 </template>
 
 <script>
-  import Services from 'services'
+  import Services from '@services'
 
   export default {
     components: {},

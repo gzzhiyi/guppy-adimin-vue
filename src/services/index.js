@@ -1,5 +1,5 @@
-// src/libs/apis/index.js
-import request from '@/utils/request'
+// src/services/index.js
+import request from '@utils/request'
 import Project from './project'
 import Resource from './resource'
 

@@ -1,7 +1,7 @@
 // src/router/index.js
 import Vue from 'vue'
 import iView from 'view-design'
-import { openNewPage } from 'utils'
+import { openNewPage } from '@utils'
 import VueRouter from 'vue-router'
 import Cookies from 'js-cookie'
 import { routers } from './router'

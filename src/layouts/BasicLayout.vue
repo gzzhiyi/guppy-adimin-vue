@@ -66,8 +66,8 @@
   import sidebar from './components/sidebar/Sidebar.vue'
   import tagsPageOpened from './components/TagsPageOpened.vue'
   import breadcrumbNav from './components/BreadcrumbNav.vue'
-  import { setCurrentPath, openNewPage } from 'utils'
-  import { getUserInfo as fetchGetUserInfo } from 'services'
+  import { setCurrentPath, openNewPage } from '@utils'
+  import { getUserInfo as fetchGetUserInfo } from '@services'
 
   export default {
     components: {

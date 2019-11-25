@@ -1,5 +1,4 @@
-// src/libs/apis/resource.js
-import request from '@/utils/request'
+import request from '@utils/request'
 
 /**
  * 资源列表

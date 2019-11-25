@@ -34,7 +34,7 @@
 
 <script>
   import { cloneDeep } from 'lodash'
-  import Services from 'services'
+  import Services from '@services'
   import Container from '@components/Container'
   import Header from '@components/Header'
   import Content from '@components/Content'

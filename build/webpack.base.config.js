@@ -88,8 +88,8 @@ module.exports = {
     alias: {
       '@': path.join(__dirname, '../src'),
       '@components': path.join(__dirname, '../src/components'),
-      'services': '@/services/index',
-      'utils': '@/utils/index'
+      '@services': '@/services/index',
+      '@utils': '@/utils/index'
     },
     extensions: ['.js', '.vue'],
     modules: [

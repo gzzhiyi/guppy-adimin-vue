@@ -1,5 +1,5 @@
 import { otherRouter, appRouter } from '@/router/router'
-import { getMenuByPermission, oneOf } from 'utils'
+import { getMenuByPermission, oneOf } from '@utils'
 
 const defaultRoute = [{
   title: '首页',
