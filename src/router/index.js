@@ -4,22 +4,19 @@ import iView from 'view-design'
 import { openNewPage } from '@utils'
 import VueRouter from 'vue-router'
 import Cookies from 'js-cookie'
-import { routers } from './router'
+import RouterConfig from './router'
 
 Vue.use(VueRouter)
 
-// 路由配置
-const RouterConfig = {
-  routes: routers
-}
-
-export const router = new VueRouter(RouterConfig)
+export const router = new VueRouter({
+  routes: RouterConfig
+})
 
 router.beforeEach((to, from, next) => {
   iView.LoadingBar.start()
   const token = Cookies.get('userToken')
   if (token) {
-    to.path === '/' ? next({ name: 'home' }) : next()
+    to.path === '/' ? next({ name: 'dashboard' }) : next()
   } else {
     to.name === 'login' ? next() : next({ name: 'login' })
   }

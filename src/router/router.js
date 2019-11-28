@@ -11,7 +11,7 @@ export const login = {
     title: '登录'
   },
   component: () =>
-    import ('@/pages/Login.vue')
+    import ('@/pages/accounts/Login.vue')
 }
 
 /**
@@ -24,20 +24,7 @@ export const page404 = {
     title: '404-页面不存在'
   },
   component: () =>
-    import ('@/pages/404.vue')
-}
-
-/**
- * 浏览器兼容
- */
-export const notSupport = {
-  path: '/not_support',
-  name: 'not_support',
-  meta: {
-    title: '不支持当前浏览器'
-  },
-  component: () =>
-    import ('@/pages/NotSupport.vue')
+    import ('@/pages/error/404.vue')
 }
 
 /**
@@ -50,11 +37,10 @@ export const otherRouter = {
   component: BasicLayout,
   children: [
     {
-      path: '/home',
-      name: 'home',
-      title: '欢迎',
-      component: () =>
-        import ('@/pages/Home.vue')
+      path: '/dashboard',
+      name: 'dashboard',
+      title: '首页',
+      component: () => import ('@/pages/Dashboard.vue')
     }
   ]
 }
@@ -64,47 +50,44 @@ export const otherRouter = {
  * 并且在左侧菜单显示的路由写在appRouter里
  */
 export const appRouter = [
-  {
-    path: '/project',
-    name: 'project',
-    title: '项目管理',
-    icon: 'md-bug',
-    component: BasicLayout,
-    children: [
-      {
-        path: '/project_list',
-        name: 'project_list',
-        icon: 'md-cube',
-        access: 'admin',
-        title: '项目列表',
-        component: () =>
-          import ('@/pages/project/List.vue')
-      }
-    ]
-  },
-  {
-    path: '/resource',
-    name: 'resource',
-    title: '资源管理',
-    icon: 'md-bug',
-    component: BasicLayout,
-    children: [
-      {
-        path: '/resource_list',
-        name: 'resource_list',
-        icon: 'md-images',
-        title: '资源列表',
-        component: () =>
-          import ('@/pages/resource/List.vue')
-      }
-    ]
-  }
+  // {
+  //   path: '/project',
+  //   name: 'project',
+  //   title: '项目管理',
+  //   icon: 'md-bug',
+  //   component: BasicLayout,
+  //   children: [
+  //     {
+  //       path: '/project_list',
+  //       name: 'project_list',
+  //       icon: 'md-cube',
+  //       access: 'admin',
+  //       title: '项目列表',
+  //       component: () => import ('@/pages/project/List.vue')
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/resource',
+  //   name: 'resource',
+  //   title: '资源管理',
+  //   icon: 'md-bug',
+  //   component: BasicLayout,
+  //   children: [
+  //     {
+  //       path: '/resource_list',
+  //       name: 'resource_list',
+  //       icon: 'md-images',
+  //       title: '资源列表',
+  //       component: () => import ('@/pages/resource/List.vue')
+  //     }
+  //   ]
+  // }
 ]
 
-export const routers = [
+export default [
   login,
   page404,
-  notSupport,
   otherRouter,
   ...appRouter
 ]

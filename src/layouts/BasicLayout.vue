@@ -67,7 +67,7 @@
   import tagsPageOpened from './components/TagsPageOpened.vue'
   import breadcrumbNav from './components/BreadcrumbNav.vue'
   import { setCurrentPath, openNewPage } from '@utils'
-  import { getUserInfo as fetchGetUserInfo } from '@services'
+  import { getUserInfo as fetchGetUserInfo } from '@services/accounts'
 
   export default {
     components: {

@@ -7,7 +7,7 @@ const title = 'My Admin'
 
 module.exports = {
   prod: { // 生产环境
-    title: title,
+    title,
     apiHostName: ''
   },
   test: { // 测试环境
