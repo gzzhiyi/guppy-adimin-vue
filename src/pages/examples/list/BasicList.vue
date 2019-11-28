@@ -21,14 +21,6 @@
         @on-page-size-change="onPageSizeChange"
       />
     </Footer>
-
-    <ProjectForm
-      ref="projectForm"
-      :status="formStatus"
-      :data="formData"
-      :departmentList="departmentList"
-      @on-saved="init"
-    />
   </Container>
 </template>
 
@@ -39,15 +31,13 @@
   import Header from '@components/Header'
   import Content from '@components/Content'
   import Footer from '@components/Footer'
-  import ProjectForm from './components/Form'
 
   export default {
     components: {
       Container,
       Header,
       Content,
-      Footer,
-      ProjectForm
+      Footer
     },
     data () {
       const columns = [
@@ -109,8 +99,8 @@
     },
     methods: {
       init () {
-        this.getDepartmentList()
-        this.getProjectList()
+        // this.getDepartmentList()
+        // this.getProjectList()
       },
       /**
        * 添加项目
