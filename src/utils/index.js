@@ -1,3 +1,9 @@
+const defaultRoute = {
+  title: '首页',
+  path: '/dashboard',
+  name: 'dashboard'
+}
+
 /**
  * 获取当前路径
  * @param {!Object} vm
@@ -18,25 +24,15 @@ export function setCurrentPath (vm, name) {
     })
   })
 
-  let currentPathArr = []
+  const currentPathArr = []
   if (name === 'dashboard') {
-    currentPathArr = [{
-      title: '首页',
-      path: '/dashboard',
-      name: 'dashboard'
-    }]
+    currentPathArr.push(defaultRoute)
   } else if (isOtherRouter && name !== 'dashboard') {
-    currentPathArr = [
-      {
-        title: '首页',
-        path: '/dashboard',
-        name: 'dashboard'
-      }, {
-        title,
-        path: '',
-        name: name
-      }
-    ]
+    currentPathArr.push(defaultRoute, {
+      title,
+      path: '',
+      name: name
+    })
   } else {
     let currentPathObj = vm.$store.state.app.routers.filter(item => {
       if (item.children.length <= 1) {
@@ -56,42 +52,27 @@ export function setCurrentPath (vm, name) {
     })[0]
 
     if (currentPathObj.children.length <= 1 && currentPathObj.name === 'dashboard') {
-      currentPathArr = [{
-        title: '首页',
-        path: '/dashboard',
-        name: 'dashboard'
-      }]
+      currentPathArr.push(defaultRoute)
     } else if (currentPathObj.children.length <= 1 && currentPathObj.name !== 'dashboard') {
-      currentPathArr = [
-        {
-          title: '首页',
-          path: '/dashboard',
-          name: 'dashboard'
-        }, {
-          title: currentPathObj.title,
-          path: '',
-          name: name
-        }
-      ]
+      currentPathArr.push(defaultRoute, {
+        title: currentPathObj.title,
+        path: '',
+        name: name
+      })
     } else {
-      let childObj = currentPathObj.children.filter((child) => {
+      const childObj = currentPathObj.children.filter((child) => {
         return child.name === name
       })[0]
-      currentPathArr = [
-        {
-          title: '首页',
-          path: '/dashboard',
-          name: 'dashboard'
-        }, {
-          title: currentPathObj.title,
-          path: '',
-          name: currentPathObj.name
-        }, {
-          title: childObj.title,
-          path: currentPathObj.path + '/' + childObj.path,
-          name: name
-        }
-      ]
+
+      currentPathArr.push(defaultRoute, {
+        title: currentPathObj.title,
+        path: '',
+        name: currentPathObj.name
+      }, {
+        title: childObj.title,
+        path: currentPathObj.path + '/' + childObj.path,
+        name: name
+      })
     }
   }
   vm.$store.commit('setCurrentPath', currentPathArr)

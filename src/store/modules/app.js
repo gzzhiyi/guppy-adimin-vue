@@ -3,8 +3,8 @@ import { getMenuByPermission } from '@utils'
 
 const defaultRoute = [{
   title: '首页',
-  path: '',
-  name: 'home'
+  path: '/dashboard',
+  name: 'dashboard'
 }]
 
 export default {
@@ -18,8 +18,7 @@ export default {
     routers: [ // 路由
       otherRouter,
       ...appRouter
-    ],
-    dontCache: [''] // 在这里定义你不想要缓存的页面的name属性值
+    ]
   },
   mutations: {
     /**
