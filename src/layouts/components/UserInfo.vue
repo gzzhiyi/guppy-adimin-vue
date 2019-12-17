@@ -100,13 +100,12 @@
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    padding: @spacing-base;
     cursor: pointer;
     &:hover {
       background-color: rgba(0, 0, 0, .05);
     }
     &__avatar {
-      margin-right: @spacing-base;
+      margin: @spacing-base;
     }
     &__name {
       display: inline-flex;

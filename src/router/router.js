@@ -2,18 +2,6 @@
 import BasicLayout from '@/layouts/BasicLayout.vue'
 
 /**
- * 注册
- */
-export const register = {
-  path: '/register',
-  name: 'register',
-  meta: {
-    title: '登录'
-  },
-  component: () => import ('@/pages/accounts/Register.vue')
-}
-
-/**
  * 登录
  */
 export const login = {
@@ -93,7 +81,6 @@ export const appRouter = [
 ]
 
 export default [
-  register,
   login,
   page404,
   otherRouter,

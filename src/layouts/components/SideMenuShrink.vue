@@ -59,10 +59,14 @@
 </script>
 
 <style lang="less" scoped>
-  @import (reference) "../../../assets/styles/common.less";
+  @import (reference) "../../assets/styles/common.less";
 
   .sidebar-menu-shrink {
-    margin-top: 1px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 60px;
+    overflow: auto;
     &-item {
       text-align: left;
     }

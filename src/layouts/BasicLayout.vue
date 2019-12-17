@@ -5,14 +5,23 @@
       class="main__sidebar"
       :class="shrink && 'main__sidebar--shrink'"
     >
+      <!-- Logo -->
       <Logo :shrink="shrink" />
-      <SideMenu
-        :shrink="shrink"
-        :before-push="onBeforePush"
-        :open-names="openedSubmenuArr"
+
+      <!-- SideMenu -->
+      <sidebar-menu
+        v-show="!shrink"
         :menu-list="menuList"
-        @on-change="onSubmenuChange"
+        :open-names="openedSubmenuArr"
+        @on-change="onChange"
       />
+      <sidebar-menu-shrink
+        v-show="shrink"
+        :menu-list="menuList"
+        @on-change="onChange"
+      />
+
+      <!-- UserInfo -->
       <UserInfo :shrink="shrink" />
     </div>
 
@@ -21,19 +30,19 @@
       class="main__header"
       :class="shrink && 'main__header--shrink'"
     >
-      <!-- Header Top -->
-      <div class="main__header__top">
-        <Button
-          class="sidebar-btn"
-          :class="shrink && 'sidebar-btn--shrink'"
-          type="text"
-          @click="handleToggleClick"
-        >
-          <Icon type="md-menu" size="24" />
-        </Button>
-        <div class="breadcrumb">
-          <BreadcrumbNav :currentPath="currentPath" />
-        </div>
+      <!-- ShrinkButton -->
+      <Button
+        class="shrink-btn"
+        :class="shrink && 'shrink-btn--shrink'"
+        type="text"
+        @click="handleToggleClick"
+      >
+        <Icon type="md-menu" size="24" />
+      </Button>
+
+      <!-- Breadcrumb -->
+      <div class="breadcrumb">
+        <BreadcrumbNav :currentPath="currentPath" />
       </div>
     </div>
 
@@ -51,14 +60,16 @@
 
 <script>
   import Logo from './components/Logo'
-  import SideMenu from './components/sidebar/Sidebar.vue'
+  import sidebarMenu from './components/SideMenu'
+  import sidebarMenuShrink from './components/SideMenuShrink'
   import UserInfo from './components/UserInfo.vue'
   import BreadcrumbNav from './components/BreadcrumbNav.vue'
   import { setCurrentPath, openNewPage } from '@utils'
 
   export default {
     components: {
-      SideMenu,
+      sidebarMenu,
+      sidebarMenuShrink,
       BreadcrumbNav,
       Logo,
       UserInfo
@@ -121,12 +132,6 @@
         this.shrink = !this.shrink
       },
       /**
-       * 菜单跳转前钩子函数
-       */
-      onBeforePush (name) {
-        return true
-      },
-      /**
        * 切换子菜单钩子
        */
       onSubmenuChange (val) {},
@@ -146,8 +151,11 @@
       logout () {
         this.$store.commit('logout')
         this.$store.commit('clearOpenedSubmenu')
-        this.$store.commit('clearAllTags')
         this.$router.push({ name: 'login' })
+      },
+      onChange (name) {
+        this.$router.push({ name: name })
+        this.$emit('on-change', name)
       }
     }
   }
@@ -167,6 +175,7 @@
       z-index: 10;
       top: 0;
       left: 0;
+      width: 200px;
       height: 100%;
       transition: width @transition-time;
       &--shrink {
@@ -174,17 +183,15 @@
       }
     }
     &__header {
-      padding-left: 200px;
-      &--shrink {
-        padding-left: 60px;
-      }
-    }
-    &__header__top {
       display: flex;
       align-items: center;
       position: relative;
       height: 60px;
-      .sidebar-btn {
+      padding-left: 200px;
+      &--shrink {
+        padding-left: 60px;
+      }
+      .shrink-btn {
         height: 100%;
         transform: rotateZ(0deg);
         &--shrink {
@@ -194,10 +201,6 @@
       .breadcrumb {
         padding: 0 @spacing-base;
       }
-    }
-    &__header__tags {
-      height: 32px;
-      overflow: hidden;
     }
     &__content {
       position: absolute;

@@ -1,5 +1,6 @@
 <template>
   <Menu
+    class="side-menu"
     ref="sidebarMenu"
     :active-name="$route.name"
     :open-names="openNames"
@@ -93,3 +94,13 @@
     }
   }
 </script>
+
+<style lang="less" scoped>
+  .side-menu {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 200px;
+    overflow: auto;
+  }
+</style>

@@ -144,40 +144,6 @@ export default {
       localStorage.pageOpenedList = JSON.stringify(state.pageOpenedList)
     },
     /**
-     * 清空Tag，关闭所有标签
-     * @param {!Object} state
-     */
-    clearAllTags (state) {
-      state.pageOpenedList.splice(1)
-      state.cachePage.length = 0
-      localStorage.pageOpenedList = JSON.stringify(state.pageOpenedList)
-    },
-    /**
-     * 清空Tag，清空其它标签
-     * @param {!Object} state
-     * @param {!Object} vm
-     */
-    clearOtherTags (state, vm) {
-      let currentName = vm.$route.name
-      let currentIndex = 0
-      state.pageOpenedList.forEach((item, index) => {
-        if (item.name === currentName) {
-          currentIndex = index
-        }
-      })
-      if (currentIndex === 0) {
-        state.pageOpenedList.splice(1)
-      } else {
-        state.pageOpenedList.splice(currentIndex + 1)
-        state.pageOpenedList.splice(1, currentIndex - 1)
-      }
-      let newCachepage = state.cachePage.filter(item => {
-        return item === currentName
-      })
-      state.cachePage = newCachepage
-      localStorage.pageOpenedList = JSON.stringify(state.pageOpenedList)
-    },
-    /**
      * 设置已打开列表
      * @param {!Object} state
      */
