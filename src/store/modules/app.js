@@ -1,5 +1,5 @@
 import { otherRouter, appRouter } from '@/router/router'
-import { getMenuByPermission, oneOf } from '@utils'
+import { getMenuByPermission } from '@utils'
 
 const defaultRoute = [{
   title: '首页',
@@ -10,9 +10,7 @@ const defaultRoute = [{
 export default {
   state: {
     cachePage: [], // 缓存页面
-    isFullScreen: false, // 是否全屏显示
     openedSubmenuArr: [], // 要展开的菜单数组
-    pageOpenedList: defaultRoute, // 已打开页面
     currentPageName: '', // 当前页面名称
     currentPath: defaultRoute, // 当前页面路径
     permissionList: [], // 权限列表
@@ -21,18 +19,9 @@ export default {
       otherRouter,
       ...appRouter
     ],
-    tagsList: [...otherRouter.children], // 页标签
     dontCache: [''] // 在这里定义你不想要缓存的页面的name属性值
   },
   mutations: {
-    /**
-     * 设置tagsList内容
-     * @param {!Object} state
-     * @param {!Object|!Object[]} list
-     */
-    setTagsList (state, list) {
-      state.tagsList.push(...list)
-    },
     /**
      * 设置权限列表
      * @param {!Object} state
@@ -82,18 +71,6 @@ export default {
       }
     },
     /**
-     * 通过菜单名称关闭页面
-     * @param {!Object} state
-     * @param {!string} name
-     */
-    closePage (state, name) {
-      state.cachePage.forEach((item, index) => {
-        if (item === name) {
-          state.cachePage.splice(index, 1)
-        }
-      })
-    },
-    /**
      * 初始化缓存页面
      * @param {!Object} state
      */
@@ -101,54 +78,6 @@ export default {
       if (localStorage.cachePage) {
         state.cachePage = JSON.parse(localStorage.cachePage)
       }
-    },
-    /**
-     * 已打开页面列表
-     * @param {!Object} state
-     * @param {!Object} get
-     */
-    pageOpenedList (state, get) {
-      let openedPage = state.pageOpenedList[get.index]
-      if (get.argu) {
-        openedPage.argu = get.argu
-      }
-      if (get.query) {
-        openedPage.query = get.query
-      }
-      state.pageOpenedList.splice(get.index, 1, openedPage)
-      localStorage.pageOpenedList = JSON.stringify(state.pageOpenedList)
-    },
-    /**
-     * 移除Tag
-     * @param {!Object} state
-     * @param {!string} name
-     */
-    removeTag (state, name) {
-      state.pageOpenedList.map((item, index) => {
-        if (item.name === name) {
-          state.pageOpenedList.splice(index, 1)
-        }
-      })
-    },
-    /**
-     * 创建标签
-     * @param {!Object} state
-     * @param {!Object} tagObj
-     */
-    increateTag (state, tagObj) {
-      if (!oneOf(tagObj.name, state.dontCache)) {
-        state.cachePage.push(tagObj.name)
-        localStorage.cachePage = JSON.stringify(state.cachePage)
-      }
-      state.pageOpenedList.push(tagObj)
-      localStorage.pageOpenedList = JSON.stringify(state.pageOpenedList)
-    },
-    /**
-     * 设置已打开列表
-     * @param {!Object} state
-     */
-    setOpenedList (state) {
-      state.pageOpenedList = localStorage.pageOpenedList ? JSON.parse(localStorage.pageOpenedList) : [otherRouter.children[0]]
     },
     /**
      * 设置当前路径

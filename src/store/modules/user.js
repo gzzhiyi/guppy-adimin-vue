@@ -59,7 +59,6 @@ export default {
     logout (state) {
       localStorage.removeItem('isLoginBack')
       localStorage.removeItem('cachePage')
-      localStorage.removeItem('pageOpenedList')
       localStorage.removeItem('currentPageName')
 
       state.token = ''

@@ -1,7 +1,6 @@
 // src/router/index.js
 import Vue from 'vue'
 import iView from 'view-design'
-import { openNewPage } from '@utils'
 import VueRouter from 'vue-router'
 import Cookies from 'js-cookie'
 import RouterConfig from './router'
@@ -23,7 +22,6 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach((to) => {
-  openNewPage(router.app, to.name, to.params, to.query)
   iView.LoadingBar.finish()
   window.scrollTo(0, 0)
 })

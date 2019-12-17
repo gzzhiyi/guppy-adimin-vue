@@ -62,7 +62,7 @@
   import SidebarMenuShrink from './components/SideMenuShrink'
   import UserInfo from './components/UserInfo.vue'
   import BreadcrumbNav from './components/BreadcrumbNav.vue'
-  import { setCurrentPath, openNewPage } from '@utils'
+  import { setCurrentPath } from '@utils'
 
   export default {
     components: {
@@ -86,16 +86,12 @@
         if (pathArr.length > 2) {
           this.$store.commit('addOpenSubmenu', pathArr[1].name)
         }
-        this.checkTag(to.name)
         localStorage.currentPageName = to.name
       }
     },
     computed: {
       menuList () {
         return this.$store.state.app.menuList
-      },
-      pageTagsList () {
-        return this.$store.state.app.pageOpenedList // 打开的页面的页面对象
       },
       currentPath () {
         return this.$store.state.app.currentPath // 当前面包屑数组
@@ -112,18 +108,6 @@
     },
     methods: {
       /**
-       * 点击用户下拉菜单
-       * @param {!string} name - 选项名称
-       */
-      handleClickUserDropdown (name) {
-        if (name === 'userCenter') {
-          openNewPage(this, 'userCenter_index')
-          this.$router.push({ name: 'userCenter_index' })
-        } else if (name === 'logout') {
-          this.logout()
-        }
-      },
-      /**
        * 侧栏菜单缩放
        */
       handleToggleClick () {
@@ -133,16 +117,6 @@
        * 切换子菜单钩子
        */
       onSubmenuChange (val) {},
-      checkTag (name) {
-        const openpageHasTag = this.pageTagsList.some(item => {
-          if (item.name === name) {
-            return true
-          }
-        })
-        if (!openpageHasTag) { //  解决关闭当前标签后再点击回退按钮会退到当前页时没有标签的问题
-          openNewPage(this, name, this.$route.params || {}, this.$route.query || {})
-        }
-      },
       /**
        * 退出登录
        */

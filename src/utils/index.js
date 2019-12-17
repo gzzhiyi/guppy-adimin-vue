@@ -17,19 +17,20 @@ export function setCurrentPath (vm, name) {
       }
     })
   })
+
   let currentPathArr = []
-  if (name === 'home') {
+  if (name === 'dashboard') {
     currentPathArr = [{
       title: '首页',
-      path: '/home',
-      name: 'home'
+      path: '/dashboard',
+      name: 'dashboard'
     }]
-  } else if (isOtherRouter && name !== 'home') {
+  } else if (isOtherRouter && name !== 'dashboard') {
     currentPathArr = [
       {
         title: '首页',
-        path: '/home',
-        name: 'home'
+        path: '/dashboard',
+        name: 'dashboard'
       }, {
         title,
         path: '',
@@ -53,18 +54,19 @@ export function setCurrentPath (vm, name) {
         return false
       }
     })[0]
-    if (currentPathObj.children.length <= 1 && currentPathObj.name === 'home') {
+
+    if (currentPathObj.children.length <= 1 && currentPathObj.name === 'dashboard') {
       currentPathArr = [{
         title: '首页',
-        path: '/home',
-        name: 'home'
+        path: '/dashboard',
+        name: 'dashboard'
       }]
-    } else if (currentPathObj.children.length <= 1 && currentPathObj.name !== 'home') {
+    } else if (currentPathObj.children.length <= 1 && currentPathObj.name !== 'dashboard') {
       currentPathArr = [
         {
           title: '首页',
-          path: '/home',
-          name: 'home'
+          path: '/dashboard',
+          name: 'dashboard'
         }, {
           title: currentPathObj.title,
           path: '',
@@ -78,8 +80,8 @@ export function setCurrentPath (vm, name) {
       currentPathArr = [
         {
           title: '首页',
-          path: '/home',
-          name: 'home'
+          path: '/dashboard',
+          name: 'dashboard'
         }, {
           title: currentPathObj.title,
           path: '',
@@ -94,53 +96,6 @@ export function setCurrentPath (vm, name) {
   }
   vm.$store.commit('setCurrentPath', currentPathArr)
   return currentPathArr
-}
-
-/**
- * 打开新一页
- * @param {!Object}
- * @param {!string} name
- * @param {*} argu
- * @param {*} query
- */
-export function openNewPage (vm, name, argu, query) {
-  let pageOpenedList = vm.$store.state.app.pageOpenedList
-  let openedPageLen = pageOpenedList.length
-  let i = 0
-  let tagHasOpened = false
-  while (i < openedPageLen) {
-    if (name === pageOpenedList[i].name) { // 页面已经打开
-      vm.$store.commit('pageOpenedList', {
-        index: i,
-        argu: argu,
-        query: query
-      })
-      tagHasOpened = true
-      break
-    }
-    i++
-  }
-  if (!tagHasOpened) {
-    let tag = vm.$store.state.app.tagsList.filter((item) => {
-      if (item.children) {
-        return name === item.children[0].name
-      } else {
-        return name === item.name
-      }
-    })
-    tag = tag[0]
-    if (tag) {
-      tag = tag.children ? tag.children[0] : tag
-      if (argu) {
-        tag.argu = argu
-      }
-      if (query) {
-        tag.query = query
-      }
-      vm.$store.commit('increateTag', tag)
-    }
-  }
-  vm.$store.commit('setCurrentPageName', name)
 }
 
 /**

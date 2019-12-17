@@ -24,7 +24,6 @@
 </template>
 
 <script>
-  import { openNewPage } from '@utils'
   import { getUserInfo as fetchGetUserInfo } from '@services/accounts'
 
   export default {
@@ -39,9 +38,6 @@
     computed: {
       menuList () {
         return this.$store.state.app.menuList
-      },
-      pageTagsList () {
-        return this.$store.state.app.pageOpenedList // 打开的页面的页面对象
       },
       currentPath () {
         return this.$store.state.app.currentPath // 当前面包屑数组
@@ -82,7 +78,6 @@
        */
       handleClickUserDropdown (name) {
         if (name === 'userCenter') {
-          openNewPage(this, 'userCenter_index')
           this.$router.push({ name: 'userCenter_index' })
         } else if (name === 'logout') {
           this.logout()

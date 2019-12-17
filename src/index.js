@@ -3,7 +3,6 @@ import ViewUI from 'view-design'
 import VueClipboard from 'vue-clipboard2'
 import Cookies from 'js-cookie'
 import store from './store'
-import { appRouter } from './router/router'
 import { router } from './router/index'
 import './services/index'
 import App from './App'
@@ -25,20 +24,8 @@ new Vue({
     this.$store.commit('setUserId', Cookies.get('userId'))
     this.$store.commit('setUserName', Cookies.get('userName'))
     this.$store.commit('setRealName', Cookies.get('realName'))
-
-    /** 设置页标签 */
-    const tagsList = []
-    appRouter.map((item) => {
-      if (item.children.length <= 1) {
-        tagsList.push(item.children[0])
-      } else {
-        tagsList.push(...item.children)
-      }
-    })
-    this.$store.commit('setTagsList', tagsList)
   },
   mounted () {
-    this.$store.commit('setOpenedList')
     this.$store.commit('initCachepage')
   }
 })
