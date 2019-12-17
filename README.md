@@ -1,5 +1,5 @@
 # My Admin
-基础 Vue.js, iView 开发的中后台前端模板。
+基于 Vue.js, iView 开发的中后台前端模板。
 
 ### 目录结构
   ```

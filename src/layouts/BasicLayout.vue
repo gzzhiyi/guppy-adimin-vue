@@ -1,19 +1,19 @@
 <template>
   <div class="main">
     <!-- Sidebar -->
-    <div class="main__sidebar">
-      <sidebar
+    <div
+      class="main__sidebar"
+      :class="shrink && 'main__sidebar--shrink'"
+    >
+      <Logo :shrink="shrink" />
+      <SideMenu
         :shrink="shrink"
         :before-push="onBeforePush"
         :open-names="openedSubmenuArr"
         :menu-list="menuList"
         @on-change="onSubmenuChange"
-      >
-        <div class="main__logo" slot="top">
-          <img v-show="!shrink" src="https://www.huolala.cn/rs/img/img_nav_logo.png" key="max-logo" />
-          <img v-show="shrink" src="../assets/images/logo_min.png" key="min-logo" />
-        </div>
-      </sidebar>
+      />
+      <UserInfo :shrink="shrink" />
     </div>
 
     <!-- Header -->
@@ -32,21 +32,8 @@
           <Icon type="md-menu" size="24" />
         </Button>
         <div class="breadcrumb">
-          <breadcrumb-nav :currentPath="currentPath" />
+          <BreadcrumbNav :currentPath="currentPath" />
         </div>
-        <div class="user-info">
-          <Dropdown transfer trigger="click" @on-click="handleClickUserDropdown">
-            <span class="user-info__name" v-text="userName" />
-            <DropdownMenu slot="list">
-              <DropdownItem name="logout">退出登录</DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-          <Avatar class="user-info__avatar" :src="avatorPath"></Avatar>
-        </div>
-      </div>
-      <!-- Header Tips -->
-      <div class="main__header__tags">
-        <tags-page-opened :pageTagsList="pageTagsList"></tags-page-opened>
       </div>
     </div>
 
@@ -63,17 +50,18 @@
 </template>
 
 <script>
-  import sidebar from './components/sidebar/Sidebar.vue'
-  import tagsPageOpened from './components/TagsPageOpened.vue'
-  import breadcrumbNav from './components/BreadcrumbNav.vue'
+  import Logo from './components/Logo'
+  import SideMenu from './components/sidebar/Sidebar.vue'
+  import UserInfo from './components/UserInfo.vue'
+  import BreadcrumbNav from './components/BreadcrumbNav.vue'
   import { setCurrentPath, openNewPage } from '@utils'
-  import { getUserInfo as fetchGetUserInfo } from '@services/accounts'
 
   export default {
     components: {
-      sidebar,
-      tagsPageOpened,
-      breadcrumbNav
+      SideMenu,
+      BreadcrumbNav,
+      Logo,
+      UserInfo
     },
     data () {
       return {
@@ -103,9 +91,6 @@
       currentPath () {
         return this.$store.state.app.currentPath // 当前面包屑数组
       },
-      avatorPath () {
-        return this.$store.state.app.avatorImgPath || require('../assets/images/avatar@2x.png')
-      },
       cachePage () {
         return this.$store.state.app.cachePage
       }
@@ -115,7 +100,6 @@
       if (pathArr.length >= 2) {
         this.$store.commit('addOpenSubmenu', pathArr[1].name)
       }
-      this.getUserInfo() // 获取用户信息
     },
     methods: {
       /**
@@ -135,28 +119,6 @@
        */
       handleToggleClick () {
         this.shrink = !this.shrink
-      },
-      /**
-       * 获取用户信息
-       */
-      async getUserInfo () {
-        this.userName = this.$store.state.user.userName
-        try {
-          const res = await fetchGetUserInfo()
-          if (res.ret === 0) {
-            const { id, account, name, is_admin: isAdmin } = res.data
-            this.$store.commit('setUserId', id)
-            this.$store.commit('setUserName', account)
-            this.$store.commit('setRealName', name)
-            this.userName = account
-            const permissionList = []
-            isAdmin === 1 && permissionList.push('admin')
-            this.$store.commit('setPermissionList', permissionList) // 设置权限列表
-            this.$store.commit('updateMenulist') // 权限菜单过滤相关
-          }
-        } catch (err) {
-          console.error(err)
-        }
       },
       /**
        * 菜单跳转前钩子函数
@@ -199,22 +161,16 @@
     width: 100%;
     height: 100%;
     &__sidebar {
+      display: flex;
+      flex-direction: column;
       position: fixed;
       z-index: 10;
       top: 0;
       left: 0;
       height: 100%;
       transition: width @transition-time;
-    }
-    &__logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100px;
-      img {
-        width: auto;
-        height: 44px;
-        vertical-align: top;
+      &--shrink {
+        width: 60px;
       }
     }
     &__header {
@@ -238,39 +194,15 @@
       .breadcrumb {
         padding: 0 @spacing-base;
       }
-      .user-info {
-        display: flex;
-        align-items: center;
-        position: absolute;
-        top: 0;
-        right: 0;
-        height: 100%;
-        padding-right: @spacing-base;
-        cursor: pointer;
-        .user-info__avatar {
-          margin-left: @spacing-base;
-        }
-        .user-info__name {
-          display: inline-block;
-          width: 80px;
-          color: #1890ff;
-          text-overflow: ellipsis;
-          text-align: right;
-          word-break: keep-all;
-          white-space: nowrap;
-          overflow: hidden;
-        }
-      }
     }
     &__header__tags {
-      height: 40px;
-      padding: 0 @spacing-base;
+      height: 32px;
       overflow: hidden;
     }
     &__content {
       position: absolute;
       z-index: 1;
-      top: 101px;
+      top: 60px;
       left: 200px;
       right: 0;
       bottom: 0;

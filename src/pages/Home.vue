@@ -1,6 +1,6 @@
 <template>
   <Container>
-    欢迎您使用货拉拉开发资源平台！
+    Welcome!
   </Container>
 </template>
 

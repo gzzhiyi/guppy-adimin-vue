@@ -20,7 +20,7 @@
 
   .page {
     height: 100%;
-    padding: @spacing-large;
+    padding: @spacing-base @spacing-large;
     background-color: @page-bg-color;
     overflow: auto;
   }

@@ -3,7 +3,6 @@
     class="sidebar"
     :class="shrink && 'sidebar--shrink'"
   >
-    <slot name="top"></slot>
     <div class="menu">
       <sidebar-menu
         v-show="!shrink"
@@ -70,14 +69,14 @@
   .sidebar {
     display: flex;
     flex-direction: column;
+    flex: 1;
     width: 200px;
-    height: 100%;
+    overflow: auto;
     &--shrink {
       width: 60px;
     }
     .menu {
       flex: 1;
-      box-shadow: 0 0 1px inset #aaa;
     }
   }
 </style>

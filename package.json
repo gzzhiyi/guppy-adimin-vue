@@ -1,7 +1,7 @@
 {
-  "name": "my_admin",
-  "version": "0.0.1",
-  "description": "My_Admin",
+  "name": "guppy_admin",
+  "version": "0.1.0",
+  "description": "Guppy Admin",
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --config ./build/webpack.dev.config.js --colors",
@@ -11,13 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://git.dev.tencent.com/gzzhiyi/guppy_admin_vue.git"
   },
-  "author": "gzzhiyi",
+  "author": "stanley.he",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.19.0",
-    "fuse.js": "^3.2.1",
     "js-cookie": "^2.2.0",
     "lodash": "^4.17.5",
     "view-design": "^4.0.0",

@@ -39,7 +39,7 @@
   .page {
     width: 100%;
     height: 100%;
-    background: #f8f8f8 url('https://sso.huolala.cn/static/images/login_bg.11a196.jpg') no-repeat;
+    background-color: #f8f8f8;
     background-size: cover;
     background-position: center;
   }

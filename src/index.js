@@ -6,7 +6,7 @@ import store from './store'
 import { appRouter } from './router/router'
 import { router } from './router/index'
 import './services/index'
-import App from './layouts/App'
+import App from './App'
 import 'view-design/dist/styles/iview.css'
 import './assets/styles/style.less'
 
