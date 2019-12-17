@@ -1,37 +1,67 @@
 <template>
   <div class="sidebar-menu-shrink">
     <template v-for="(item, index) in menuList">
-      <div class="sidebar-menu-shrink-item" :key="index">
+      <div
+        :key="index"
+        class="sidebar-menu-shrink-item"
+      >
         <Dropdown
-          transfer v-if="item.children.length !== 1"
+          v-if="item.children.length !== 1"
           placement="right-start"
-          :key="index"
+          transfer
           @on-click="changeMenu"
         >
-          <Button class="sidebar-menu-shrink-btn" type="text">
-            <Icon :size="20" :type="item.icon"></Icon>
+          <Button
+            class="sidebar-menu-shrink-btn"
+            type="text"
+          >
+            <Icon
+              :size="20"
+              :type="item.icon"
+            />
           </Button>
-          <DropdownMenu style="width: 200px;" slot="list">
+          <DropdownMenu
+            class="dropdown-menu"
+            slot="list"
+          >
             <template v-for="(child, i) in item.children">
-              <DropdownItem :name="child.name" :key="i">
-                <Icon :type="child.icon"></Icon>
-                <span style="padding-left:10px;">{{ itemTitle(child) }}</span>
+              <DropdownItem
+                :name="child.name"
+                :key="i"
+              >
+                <Icon :type="child.icon" />
+                <span class="dropdown-menu__text">
+                  {{ itemTitle(child) }}
+                </span>
               </DropdownItem>
             </template>
           </DropdownMenu>
         </Dropdown>
-        <Dropdown transfer v-else placement="right-start" :key="index" @on-click="changeMenu">
+        <Dropdown
+          v-else
+          transfer
+          placement="right-start"
+          @on-click="changeMenu"
+        >
           <Button
             class="sidebar-menu-shrink-btn"
             @click="changeMenu(item.children[0].name)"
             type="text"
           >
-            <Icon :size="20" :type="item.children[0].icon || item.icon"></Icon>
+            <Icon
+              :size="20"
+              :type="item.children[0].icon || item.icon"
+            />
           </Button>
-          <DropdownMenu style="width: 200px;" slot="list">
-            <DropdownItem :name="item.children[0].name" :key="'d' + index">
+          <DropdownMenu
+            class="dropdown-menu"
+            slot="list"
+          >
+            <DropdownItem :name="item.children[0].name">
               <Icon :type="item.children[0].icon || item.icon"></Icon>
-              <span style="padding-left:10px;">{{ itemTitle(item.children[0]) }}</span>
+              <span class="dropdown-menu__text">
+                {{ itemTitle(item.children[0]) }}
+              </span>
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>
@@ -71,10 +101,17 @@
       text-align: left;
     }
     &-btn {
-      width: 59px;
+      width: 60px;
       height: auto;
       padding: 10px 0;
       border-radius: 0;
+    }
+  }
+
+  .dropdown-menu {
+    width: 200px;
+    &__text {
+      padding-left: 10px;
     }
   }
 </style>

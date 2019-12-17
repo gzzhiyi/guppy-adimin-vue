@@ -3,8 +3,7 @@
     class="logo"
     :class="shrink && 'logo--shrink'"
   >
-    <img v-show="!shrink" src="https://www.huolala.cn/rs/img/img_nav_logo.png" />
-    <img v-show="shrink" src="../../assets/images/logo_min.png" />
+    <img :src="!shrink ? logo : minLogo" />
   </div>
 </template>
 
@@ -14,9 +13,11 @@
       shrink: false
     },
     data () {
-      return {}
-    },
-    methods: {}
+      return {
+        logo: 'https://www.huolala.cn/rs/img/img_nav_logo.png',
+        minLogo: require('../../assets/images/logo_min.png')
+      }
+    }
   }
 </script>
 

@@ -2,20 +2,20 @@
   <div class="main">
     <!-- Sidebar -->
     <div
-      class="main__sidebar"
-      :class="shrink && 'main__sidebar--shrink'"
+      class="sidebar"
+      :class="shrink && 'sidebar--shrink'"
     >
       <!-- Logo -->
       <Logo :shrink="shrink" />
 
       <!-- SideMenu -->
-      <sidebar-menu
+      <SidebarMenu
         v-show="!shrink"
         :menu-list="menuList"
         :open-names="openedSubmenuArr"
         @on-change="onChange"
       />
-      <sidebar-menu-shrink
+      <SidebarMenuShrink
         v-show="shrink"
         :menu-list="menuList"
         @on-change="onChange"
@@ -27,13 +27,13 @@
 
     <!-- Header -->
     <div
-      class="main__header"
-      :class="shrink && 'main__header--shrink'"
+      class="header"
+      :class="shrink && 'header--shrink'"
     >
       <!-- ShrinkButton -->
       <Button
         class="shrink-btn"
-        :class="shrink && 'shrink-btn--shrink'"
+        :class="shrink && 'shrink-btn--on'"
         type="text"
         @click="handleToggleClick"
       >
@@ -41,15 +41,13 @@
       </Button>
 
       <!-- Breadcrumb -->
-      <div class="breadcrumb">
-        <BreadcrumbNav :currentPath="currentPath" />
-      </div>
+      <BreadcrumbNav :currentPath="currentPath" />
     </div>
 
     <!-- Content -->
     <div
-      class="main__content"
-      :class="shrink && 'main__content--shrink'"
+      class="content"
+      :class="shrink && 'content--shrink'"
     >
       <keep-alive :include="cachePage">
         <router-view></router-view>
@@ -60,16 +58,16 @@
 
 <script>
   import Logo from './components/Logo'
-  import sidebarMenu from './components/SideMenu'
-  import sidebarMenuShrink from './components/SideMenuShrink'
+  import SidebarMenu from './components/SideMenu'
+  import SidebarMenuShrink from './components/SideMenuShrink'
   import UserInfo from './components/UserInfo.vue'
   import BreadcrumbNav from './components/BreadcrumbNav.vue'
   import { setCurrentPath, openNewPage } from '@utils'
 
   export default {
     components: {
-      sidebarMenu,
-      sidebarMenuShrink,
+      SidebarMenu,
+      SidebarMenuShrink,
       BreadcrumbNav,
       Logo,
       UserInfo
@@ -168,52 +166,53 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    &__sidebar {
-      display: flex;
-      flex-direction: column;
-      position: fixed;
-      z-index: 10;
-      top: 0;
-      left: 0;
-      width: 200px;
+  }
+
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    background-color: @siderbar-bg-color;
+    transition: width @transition-time;
+    &--shrink {
+      width: 60px;
+    }
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 60px;
+    padding-left: 200px;
+    &--shrink {
+      padding-left: 60px;
+    }
+    .shrink-btn {
       height: 100%;
-      transition: width @transition-time;
-      &--shrink {
-        width: 60px;
+      transform: rotateZ(0deg);
+      &--on {
+        transform: rotateZ(-90deg);
       }
     }
-    &__header {
-      display: flex;
-      align-items: center;
-      position: relative;
-      height: 60px;
-      padding-left: 200px;
-      &--shrink {
-        padding-left: 60px;
-      }
-      .shrink-btn {
-        height: 100%;
-        transform: rotateZ(0deg);
-        &--shrink {
-          transform: rotateZ(-90deg);
-        }
-      }
-      .breadcrumb {
-        padding: 0 @spacing-base;
-      }
-    }
-    &__content {
-      position: absolute;
-      z-index: 1;
-      top: 60px;
-      left: 200px;
-      right: 0;
-      bottom: 0;
-      overflow: auto;
-      transition: left @animation-time;
-      &--shrink {
-        left: 60px;
-      }
+  }
+
+  .content {
+    position: absolute;
+    z-index: 9;
+    top: 60px;
+    left: 200px;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    transition: left @animation-time;
+    &--shrink {
+      left: 60px;
     }
   }
 </style>

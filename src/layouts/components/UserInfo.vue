@@ -1,21 +1,21 @@
 <template>
   <Dropdown
-    class="user-info"
     :class="shrink && 'user-info--shrink'"
+    class="user-info"
     transfer
     placement="right"
     trigger="click"
     @on-click="handleClickUserDropdown"
   >
     <Avatar
+      :src="avatorPath"
       class="user-info__avatar"
       size="40"
-      :src="avatorPath"
     />
     <div
-      class="user-info__name"
       v-show="!shrink"
       v-text="userName"
+      class="user-info__name"
     />
     <DropdownMenu slot="list">
       <DropdownItem name="logout">退出登录</DropdownItem>

@@ -1,5 +1,5 @@
 <template>
-  <Breadcrumb>
+  <Breadcrumb class="breadcrumb">
     <BreadcrumbItem
       v-for="item in currentPath"
       :key="item.name"
@@ -19,3 +19,10 @@
   }
 </script>
 
+<style lang="less" scoped>
+  @import (reference) "../../assets/styles/common.less";
+
+  .breadcrumb {
+    padding: 0 @spacing-base;
+  }
+</style>

@@ -1,7 +1,7 @@
 <template>
   <div
-    class="page"
     :style="{ backgroundColor: bgColor }"
+    class="page"
   >
     <slot></slot>
   </div>
