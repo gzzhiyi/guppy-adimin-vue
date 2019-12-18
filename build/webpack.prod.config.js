@@ -5,10 +5,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const ModuleConcatenationPlugin = require('webpack/lib/optimize/ModuleConcatenationPlugin')
-const webpackBasicConfig = require('./webpack.base.config')
+const webpackBaseConfig = require('./webpack.base.config')
 const config = require('./config')
 
-module.exports = merge.smart(webpackBasicConfig, {
+module.exports = merge.smart(webpackBaseConfig, {
   mode: 'production',
   module: {
     rules: [{

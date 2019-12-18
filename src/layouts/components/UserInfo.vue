@@ -82,6 +82,14 @@
         } else if (name === 'logout') {
           this.logout()
         }
+      },
+      /**
+       * 退出登录
+       */
+      logout () {
+        this.$store.commit('logout')
+        this.$store.commit('clearOpenedSubmenu')
+        this.$router.replace({ name: 'login' })
       }
     }
   }

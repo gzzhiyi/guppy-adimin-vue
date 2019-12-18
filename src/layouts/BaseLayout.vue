@@ -117,14 +117,6 @@
        * 切换子菜单钩子
        */
       onSubmenuChange (val) {},
-      /**
-       * 退出登录
-       */
-      logout () {
-        this.$store.commit('logout')
-        this.$store.commit('clearOpenedSubmenu')
-        this.$router.push({ name: 'login' })
-      },
       onChange (name) {
         this.$router.push({ name: name })
         this.$emit('on-change', name)

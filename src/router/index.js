@@ -3,12 +3,12 @@ import Vue from 'vue'
 import iView from 'view-design'
 import VueRouter from 'vue-router'
 import Cookies from 'js-cookie'
-import RouterConfig from './router'
+import routerConfig from './routerConfig'
 
 Vue.use(VueRouter)
 
 export const router = new VueRouter({
-  routes: RouterConfig
+  routes: routerConfig
 })
 
 router.beforeEach((to, from, next) => {

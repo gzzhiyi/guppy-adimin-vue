@@ -1,5 +1,6 @@
 // src/router/router.js
-import BasicLayout from '@/layouts/BasicLayout.vue'
+import BaseLayout from '@/layouts/BaseLayout.vue'
+import examples from './example'
 
 /**
  * 登录
@@ -10,11 +11,11 @@ export const login = {
   meta: {
     title: '登录'
   },
-  component: () => import ('@/pages/accounts/Login.vue')
+  component: () => import('@/pages/accounts/Login.vue')
 }
 
 /**
- * 404
+ * 错误
  */
 export const page403 = {
   path: '/error_403',
@@ -22,7 +23,7 @@ export const page403 = {
   meta: {
     title: '403-没有权限'
   },
-  component: () => import ('@/pages/error/403.vue')
+  component: () => import('@/pages/error/403.vue')
 }
 
 export const page404 = {
@@ -31,7 +32,16 @@ export const page404 = {
   meta: {
     title: '404-页面不存在'
   },
-  component: () => import ('@/pages/error/404.vue')
+  component: () => import('@/pages/error/404.vue')
+}
+
+export const page500 = {
+  path: '/error_500',
+  name: 'error_500',
+  meta: {
+    title: '500-服务器出错'
+  },
+  component: () => import('@/pages/error/500.vue')
 }
 
 /**
@@ -40,13 +50,13 @@ export const page404 = {
 export const otherRouter = {
   path: '/',
   name: 'otherRouter',
-  component: BasicLayout,
+  component: BaseLayout,
   children: [
     {
       path: '/dashboard',
       name: 'dashboard',
       title: '首页',
-      component: () => import ('@/pages/Dashboard.vue')
+      component: () => import('@/pages/Dashboard.vue')
     }
   ]
 }
@@ -55,34 +65,14 @@ export const otherRouter = {
  * 作为Main组件的子页面展示，并且在左侧菜单显示的路由写在appRouter里
  */
 export const appRouter = [
-  {
-    path: '/list',
-    name: 'list',
-    title: '列表页',
-    icon: 'md-list',
-    component: BasicLayout,
-    children: [
-      {
-        path: '/basic_list',
-        name: 'basic_list',
-        icon: 'md-list',
-        title: '标准列表',
-        component: () => import ('@/pages/examples/list/BasicList.vue')
-      },
-      {
-        path: '/search_list',
-        name: 'search_list',
-        icon: 'md-list',
-        title: '搜索列表',
-        component: () => import ('@/pages/examples/list/SearchList.vue')
-      }
-    ]
-  }
+  ...examples
 ]
 
 export default [
   login,
+  page403,
   page404,
+  page500,
   otherRouter,
   ...appRouter
 ]

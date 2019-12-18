@@ -2,14 +2,14 @@ const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const webpackBasicConfig = require('./webpack.base.config')
+const webpackBaseConfig = require('./webpack.base.config')
 const config = require('./config')
 const includePath = [
   path.join(__dirname, '../src/'),
   path.join(__dirname, '../build/')
 ]
 
-module.exports = merge.smart(webpackBasicConfig, {
+module.exports = merge.smart(webpackBaseConfig, {
   devServer: {
     host: 'localhost',
     port: 8088,
