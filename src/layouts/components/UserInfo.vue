@@ -3,7 +3,7 @@
     :class="shrink && 'user-info--shrink'"
     class="user-info"
     transfer
-    placement="right"
+    placement="right-end"
     trigger="click"
     @on-click="handleClickUserDropdown"
   >
@@ -18,6 +18,8 @@
       class="user-info__name"
     />
     <DropdownMenu slot="list">
+      <DropdownItem name="center">个人中心</DropdownItem>
+      <DropdownItem name="settings">个人设置</DropdownItem>
       <DropdownItem name="logout">退出登录</DropdownItem>
     </DropdownMenu>
   </Dropdown>
@@ -77,10 +79,16 @@
        * @param {!string} name - 选项名称
        */
       handleClickUserDropdown (name) {
-        if (name === 'userCenter') {
-          this.$router.push({ name: 'userCenter_index' })
-        } else if (name === 'logout') {
-          this.logout()
+        switch (name) {
+          case 'center':
+            this.$router.push({ name: 'user_center' })
+            break
+          case 'settings':
+            this.$router.push({ name: 'settings' })
+            break
+          case 'logout':
+            this.logout()
+            break
         }
       },
       /**

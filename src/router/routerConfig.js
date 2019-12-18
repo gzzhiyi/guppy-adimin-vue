@@ -1,6 +1,7 @@
 // src/router/router.js
 import BaseLayout from '@/layouts/BaseLayout.vue'
 import examples from './example'
+import account from './account'
 
 /**
  * 登录
@@ -11,7 +12,7 @@ export const login = {
   meta: {
     title: '登录'
   },
-  component: () => import('@/pages/accounts/Login.vue')
+  component: () => import('@/pages/Login.vue')
 }
 
 /**
@@ -57,7 +58,8 @@ export const otherRouter = {
       name: 'dashboard',
       title: '首页',
       component: () => import('@/pages/Dashboard.vue')
-    }
+    },
+    ...account
   ]
 }
 
