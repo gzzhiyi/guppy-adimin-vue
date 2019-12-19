@@ -20,9 +20,6 @@
         :menu-list="menuList"
         @on-change="onChange"
       />
-
-      <!-- UserInfo -->
-      <UserInfo :shrink="shrink" />
     </div>
 
     <!-- Header -->
@@ -42,6 +39,9 @@
 
       <!-- Breadcrumb -->
       <BreadcrumbNav :currentPath="currentPath" />
+
+      <!-- UserInfo -->
+      <UserInfo :shrink="shrink" />
     </div>
 
     <!-- Content -->
@@ -156,6 +156,7 @@
     position: relative;
     height: 60px;
     padding-left: 200px;
+    background-color: @header-bg-color;
     &--shrink {
       padding-left: 60px;
     }

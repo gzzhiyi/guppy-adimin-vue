@@ -3,7 +3,7 @@
     :class="shrink && 'user-info--shrink'"
     class="user-info"
     transfer
-    placement="right-end"
+    placement="bottom"
     trigger="click"
     @on-click="handleClickUserDropdown"
   >
@@ -107,10 +107,12 @@
   @import (reference) "../../assets/styles/common.less";
 
   .user-info {
+    position: absolute;
+    top: 0;
+    right: 0;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    width: 100%;
     cursor: pointer;
     &:hover {
       background-color: rgba(0, 0, 0, .05);
@@ -120,7 +122,7 @@
     }
     &__name {
       display: inline-flex;
-      width: 120px;
+      width: 100px;
       color: #1890ff;
       text-overflow: ellipsis;
       text-align: right;

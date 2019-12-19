@@ -13,5 +13,8 @@
 
   .body {
     margin-bottom: @spacing-base;
+    padding: @spacing-large;
+    background-color: #fff;
+    border-radius: @border-radius-base;
   }
 </style>

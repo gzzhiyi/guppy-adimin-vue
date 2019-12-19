@@ -36,18 +36,16 @@
 
     <Content>
       <Table :columns="columns" :data="list" :loading="loading" />
-    </Content>
-
-    <Footer>
       <Page
         :total="total"
         :page-size="pageSize"
+        class="pager"
         size="small"
         show-total
         @on-change="onPageChange"
         @on-page-size-change="onPageSizeChange"
       />
-    </Footer>
+    </Content>
   </Container>
 </template>
 
