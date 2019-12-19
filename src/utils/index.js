@@ -1,7 +1,7 @@
 const defaultRoute = {
   title: '首页',
-  path: '/dashboard',
-  name: 'dashboard'
+  path: '/home',
+  name: 'home'
 }
 
 /**
@@ -17,7 +17,7 @@ export function setCurrentPath (vm, name) {
     item.children.forEach(child => {
       if (child.name === name) {
         title = child.title
-        if (item.name === 'otherRouter') {
+        if (item.name === 'other') {
           isOtherRouter = true
         }
       }
@@ -25,9 +25,9 @@ export function setCurrentPath (vm, name) {
   })
 
   const currentPathArr = []
-  if (name === 'dashboard') {
+  if (name === 'home') {
     currentPathArr.push(defaultRoute)
-  } else if (isOtherRouter && name !== 'dashboard') {
+  } else if (isOtherRouter && name !== 'home') {
     currentPathArr.push(defaultRoute, {
       title,
       path: '',
@@ -51,9 +51,9 @@ export function setCurrentPath (vm, name) {
       }
     })[0]
 
-    if (currentPathObj.children.length <= 1 && currentPathObj.name === 'dashboard') {
+    if (currentPathObj.children.length <= 1 && currentPathObj.name === 'home') {
       currentPathArr.push(defaultRoute)
-    } else if (currentPathObj.children.length <= 1 && currentPathObj.name !== 'dashboard') {
+    } else if (currentPathObj.children.length <= 1 && currentPathObj.name !== 'home') {
       currentPathArr.push(defaultRoute, {
         title: currentPathObj.title,
         path: '',

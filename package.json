@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --config ./build/webpack.dev.config.js --colors",
-    "dev:local": "webpack-dev-server --config ./build/webpack.dev_local.config.js --colors",
-    "build": "webpack --progress --hide-modules --config build/webpack.prod.config.js",
-    "build:test": "webpack --progress --hide-modules --config build/webpack.test.config.js"
+    "dev:mock": "webpack-dev-server --config ./build/webpack.dev_mock.config.js --colors",
+    "build": "webpack --progress --hide-modules --config build/webpack.prod.config.js"
   },
   "repository": {
     "type": "git",

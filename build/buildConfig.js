@@ -1,12 +1,10 @@
-// build/config.js
-
 /**
- * 构建环境参数配置
+ * 构建环境相关配置
  */
-const title = 'My Admin'
+const title = 'Guppy Admin'
 
 module.exports = {
-  prod: { // 生产环境
+  prod: { // 正式环境
     title,
     apiHostName: ''
   },
@@ -18,8 +16,8 @@ module.exports = {
     title: `${title} <Dev>`,
     apiHostName: ''
   },
-  devLocal: { // 本地开发环境
-    title: `${title} <Dev-Local>`,
+  devLocal: { // Mock 开发环境
+    title: `${title} <Dev-Mock>`,
     apiHostName: '//localhost:3000'
   }
 }

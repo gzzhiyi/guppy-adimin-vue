@@ -6,7 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const ModuleConcatenationPlugin = require('webpack/lib/optimize/ModuleConcatenationPlugin')
 const webpackBaseConfig = require('./webpack.base.config')
-const config = require('./config')
+const config = require('./buildConfig')
 
 module.exports = merge.smart(webpackBaseConfig, {
   mode: 'production',

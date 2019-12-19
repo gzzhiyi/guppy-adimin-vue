@@ -14,13 +14,6 @@ export default [
         icon: 'md-list',
         title: '标准列表',
         component: () => import('@/pages/examples/list/BaseList.vue')
-      },
-      {
-        path: '/search_list',
-        name: 'search_list',
-        icon: 'md-list',
-        title: '搜索列表',
-        component: () => import('@/pages/examples/list/SearchList.vue')
       }
     ]
   }

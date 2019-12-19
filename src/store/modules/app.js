@@ -1,10 +1,10 @@
-import { otherRouter, appRouter } from '@/router/routerConfig'
+import { otherRoute, appRoute } from '@/router/routerConfig'
 import { getMenuByPermission } from '@utils'
 
 const defaultRoute = [{
   title: '首页',
-  path: '/dashboard',
-  name: 'dashboard'
+  path: '/home',
+  name: 'home'
 }]
 
 export default {
@@ -16,8 +16,8 @@ export default {
     permissionList: [], // 权限列表
     menuList: [], // 菜单列表
     routers: [ // 路由
-      otherRouter,
-      ...appRouter
+      otherRoute,
+      ...appRoute
     ]
   },
   mutations: {
@@ -36,7 +36,7 @@ export default {
     updateMenulist (state) {
       let menuList = []
       const permissionList = state.permissionList
-      appRouter.forEach((item, index) => {
+      appRoute.forEach((item, index) => {
         const children = item.children
         let arr = []
         if (children && children.length) {

@@ -1,10 +1,9 @@
-// src/router/router.js
 import BaseLayout from '@/layouts/BaseLayout.vue'
-import examples from './example'
 import account from './account'
+import examples from './example'
 
 /**
- * 登录
+ * 非 Layout 组件页面需要单独配置路由
  */
 export const login = {
   path: '/login',
@@ -15,9 +14,6 @@ export const login = {
   component: () => import('@/pages/Login.vue')
 }
 
-/**
- * 错误
- */
 export const page403 = {
   path: '/error_403',
   name: 'error_403',
@@ -46,27 +42,29 @@ export const page500 = {
 }
 
 /**
- * 作为Main组件的子页面展示，但不在左侧菜单显示的路由写在这里
+ * 作为 BaseLayout 组件的子页面展示
+ * 但不在左侧菜单显示的路由写在这里
  */
-export const otherRouter = {
+export const otherRoute = {
   path: '/',
-  name: 'otherRouter',
+  name: 'other',
   component: BaseLayout,
   children: [
     {
-      path: '/dashboard',
-      name: 'dashboard',
+      path: '/home',
+      name: 'home',
       title: '首页',
-      component: () => import('@/pages/Dashboard.vue')
+      component: () => import('@/pages/Home.vue')
     },
     ...account
   ]
 }
 
 /**
- * 作为Main组件的子页面展示，并且在左侧菜单显示的路由写在appRouter里
+ * 作为 BaseLayout 组件的子页面展示
+ * 并且在左侧菜单显示的路由写在这里
  */
-export const appRouter = [
+export const appRoute = [
   ...examples
 ]
 
@@ -75,6 +73,6 @@ export default [
   page403,
   page404,
   page500,
-  otherRouter,
-  ...appRouter
+  otherRoute,
+  ...appRoute
 ]

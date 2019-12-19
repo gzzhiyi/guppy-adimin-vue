@@ -22,7 +22,7 @@
        */
       handleGoHome () {
         this.$router.replace({
-          name: 'dashboard'
+          name: 'home'
         })
       }
     }

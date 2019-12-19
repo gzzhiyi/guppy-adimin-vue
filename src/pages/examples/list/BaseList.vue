@@ -5,7 +5,34 @@
         <Icon type="md-add" />
         添加
       </Button>
+      <Button @click="handleToggleSearch">
+        <Icon type="md-search" />
+        搜索
+      </Button>
     </Header>
+
+    <SearchPanel :visible="searchVisible">
+      <Form :label-width="50" inline>
+        <FormItem label="工号">
+          <Input v-model="searchForm.no" type="text" />
+        </FormItem>
+        <FormItem label="姓名">
+          <Input v-model="searchForm.name" type="text" />
+        </FormItem>
+        <FormItem label="性别">
+          <Select v-model="searchForm.sex" style="width:80px">
+            <Option :value="1" :key="1">男</Option>
+            <Option :value="2" :key="2">女</Option>
+          </Select>
+        </FormItem>
+        <Button
+          type="error"
+          @click="handleClear"
+        >
+          清空
+        </Button>
+      </Form>
+    </SearchPanel>
 
     <Content>
       <Table :columns="columns" :data="list" :loading="loading" />
@@ -30,13 +57,15 @@
   import Header from '@components/Header'
   import Content from '@components/Content'
   import Footer from '@components/Footer'
+  import SearchPanel from '@components/SearchPanel'
 
   export default {
     components: {
       Container,
       Header,
       Content,
-      Footer
+      Footer,
+      SearchPanel
     },
     data () {
       const columns = [
@@ -90,21 +119,35 @@
         loading: false,
         currentPage: 1,
         pageSize: 10,
-        total: 0
+        total: 0,
+        searchVisible: false,
+        searchForm: {
+          no: '',
+          name: '',
+          sex: 0
+        }
       }
     },
     created () {
       this.getProjectList()
     },
     methods: {
-      /**
-       * 添加项目
-       */
       handleAdd () {},
-      /**
-       * 修改项目
-       */
       handleEdit () {},
+      handleToggleSearch () {
+        if (this.searchVisible) {
+          this.searchVisible = false
+        } else {
+          this.searchVisible = true
+        }
+      },
+      handleClear () {
+        this.searchForm = {
+          no: '',
+          name: '',
+          sex: 0
+        }
+      },
       /**
        * 换页
        */

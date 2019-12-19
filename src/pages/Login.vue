@@ -66,7 +66,7 @@
       handleLogin () {
         this.$refs.loginForm.validate((valid) => {
           if (valid) {
-            this.$router.replace({ name: 'dashboard' })
+            this.$router.replace({ name: 'home' })
           } else {
             this.$Message.error('登录失败')
           }
