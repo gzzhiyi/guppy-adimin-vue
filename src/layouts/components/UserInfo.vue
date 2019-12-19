@@ -26,7 +26,7 @@
 </template>
 
 <script>
-  import { getUserInfo as fetchGetUserInfo } from '@services/accounts'
+  import { getUserInfo as fetchGetUserInfo } from '@services'
 
   export default {
     props: {
@@ -59,7 +59,7 @@
         this.userName = this.$store.state.user.userName
         try {
           const res = await fetchGetUserInfo()
-          if (res.ret === 0) {
+          if (res.status === 0) {
             const { id, account, name, is_admin: isAdmin } = res.data
             this.$store.commit('setUserId', id)
             this.$store.commit('setUserName', account)

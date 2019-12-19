@@ -3,12 +3,12 @@
     <Header>
       <Button @click="handleAdd">
         <Icon type="md-add" />
-        添加项目
+        添加
       </Button>
     </Header>
 
     <Content>
-      <Table :columns="columns" :data="projectList" :loading="loading" />
+      <Table :columns="columns" :data="list" :loading="loading" />
     </Content>
 
     <Footer>
@@ -25,7 +25,6 @@
 </template>
 
 <script>
-  import { cloneDeep } from 'lodash'
   import Services from '@services'
   import Container from '@components/Container'
   import Header from '@components/Header'
@@ -42,17 +41,20 @@
     data () {
       const columns = [
         {
-          title: '项目名',
-          key: 'name',
-          width: 150
+          title: '工号',
+          key: 'no'
         },
         {
-          title: '存储空间',
-          key: 'bucket'
+          title: '姓名',
+          key: 'name'
         },
         {
-          title: 'key_id',
-          key: 'keyId'
+          title: '性别',
+          key: 'sex'
+        },
+        {
+          title: '部门',
+          key: 'dep'
         },
         {
           title: '创建时间',
@@ -84,40 +86,25 @@
       ]
       return {
         columns,
-        departmentList: [],
-        projectList: [],
+        list: [],
         loading: false,
         currentPage: 1,
         pageSize: 10,
-        total: 0,
-        formStatus: 'add',
-        formData: {}
+        total: 0
       }
     },
     created () {
-      this.init()
+      this.getProjectList()
     },
     methods: {
-      init () {
-        // this.getDepartmentList()
-        // this.getProjectList()
-      },
       /**
        * 添加项目
        */
-      handleAdd () {
-        this.formStatus = 'add'
-        this.formData = {}
-        this.$refs.projectForm.show()
-      },
+      handleAdd () {},
       /**
        * 修改项目
        */
-      handleEdit (params) {
-        this.formStatus = 'edit'
-        this.formData = cloneDeep(params.row)
-        this.$refs.projectForm.show()
-      },
+      handleEdit () {},
       /**
        * 换页
        */
@@ -138,19 +125,19 @@
        */
       async getProjectList () {
         this.loading = true
+
         try {
-          const res = await Services.getProjectList({
-            type: 1,
+          const res = await Services.getList({
             page_no: this.currentPage,
             page_size: this.pageSize
           })
-          if (res.ret === 0) {
-            this.projectList = this.mappingProjectList(res.data.data_list)
-            this.total = Number(res.data.total)
+          if (res.status === 0) {
+            const { list, total } = res.data
+            this.list = this.mappingListData(list)
+            this.total = total
           }
           this.loading = false
         } catch (err) {
-          console.error(err)
           this.loading = false
         }
       },
@@ -158,57 +145,27 @@
        * 映射返回数据
        * @param {!Object[]} data
        */
-      mappingProjectList (data = []) {
+      mappingListData (data = []) {
         const arr = []
         data.map(item => {
           const {
-            proj_id: id,
-            proj_name: name,
-            department_id: depId,
-            domain,
-            bucket,
-            access_key_id: keyId,
+            id,
+            no,
+            name,
+            sex,
+            dep,
             create_time: createTime,
             update_time: updateTime
           } = item
 
           arr.push({
             id,
+            no,
             name,
-            depId,
-            domain,
-            bucket,
-            keyId,
+            sex,
+            dep,
             createTime,
             updateTime
-          })
-        })
-        return arr
-      },
-      /**
-       * 获取部门列表
-       */
-      async getDepartmentList () {
-        try {
-          const res = await Services.getDepartmentList()
-          if (res.ret === 0) {
-            this.departmentList = this.mappingDepartmentList(res.data.depart_list)
-          }
-        } catch (err) {
-          console.error(err)
-        }
-      },
-      /**
-       * 映射返回数据
-       * @param {!Object[]} data
-       */
-      mappingDepartmentList (data = []) {
-        const arr = []
-        data.map(item => {
-          const { id, name } = item
-          arr.push({
-            value: id,
-            label: name
           })
         })
         return arr

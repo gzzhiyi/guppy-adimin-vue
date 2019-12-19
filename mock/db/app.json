@@ -1,42 +1,17 @@
 {
   "login": {
-    "ret": 0,
+    "status": 0,
     "msg": "请求成功！",
-    "data": {
-      "url": ""
-    }
-  },
-  "get_token": {
-    "ret": 0,
-    "msg": "请求成功！",
-    "data": {
-      "token": "t1234567890"
-    }
+    "data": {}
   },
   "get_user_info": {
-    "ret": 0,
+    "status": 0,
     "msg": "请求成功！",
     "data": {
       "id": 1,
       "account": "stanley.he",
-      "name": "何xx",
+      "name": "xxx",
       "is_admin": 1
-    }
-  },
-  "get_my_depart_list": {
-    "ret": 0,
-    "msg": "请求成功！",
-    "data": {
-      "depart_list": [{
-          "id": "1203926",
-          "name": "轻应用组"
-      }, {
-          "id": "1203927",
-          "name": "业务拓展组"
-      }, {
-          "id": "362371",
-          "name": "用户组"
-      }]
     }
   }
 }
