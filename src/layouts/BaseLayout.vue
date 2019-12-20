@@ -154,7 +154,7 @@
     display: flex;
     align-items: center;
     position: relative;
-    height: 60px;
+    height: 70px;
     padding-left: 200px;
     background-color: @header-bg-color;
     &--shrink {
@@ -172,7 +172,7 @@
   .content {
     position: absolute;
     z-index: 9;
-    top: 60px;
+    top: 70px;
     left: 200px;
     right: 0;
     bottom: 0;

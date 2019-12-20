@@ -1,7 +1,7 @@
 <template>
   <Container>
     <Header>
-      <Button @click="handleAdd">
+      <Button type="primary" @click="handleAdd">
         <Icon type="md-add" />
         添加
       </Button>
@@ -34,18 +34,16 @@
       </Form>
     </SearchPanel>
 
-    <Content>
+    <Card :bordered="false" :shadow="true">
       <Table :columns="columns" :data="list" :loading="loading" />
       <Page
         :total="total"
         :page-size="pageSize"
-        class="pager"
-        size="small"
         show-total
         @on-change="onPageChange"
         @on-page-size-change="onPageSizeChange"
       />
-    </Content>
+    </Card>
   </Container>
 </template>
 

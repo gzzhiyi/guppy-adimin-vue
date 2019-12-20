@@ -15,6 +15,7 @@
     margin-bottom: @spacing-base;
     padding: @spacing-large;
     background-color: #fff;
-    border-radius: @border-radius-base;
+    border-radius: @border-radius-small;
+    box-shadow: 0 0 35px 0 rgba(0, 0, 0, .05);
   }
 </style>

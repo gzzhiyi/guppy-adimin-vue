@@ -82,12 +82,43 @@
   }
 </script>
 
+<style lang="less">
+  @import (reference) "../../assets/styles/common.less";
+
+  .side-menu {
+    .ivu-menu-item,
+    .ivu-menu-submenu {
+      color: @siderbar-color !important;
+    }
+    .ivu-menu-item:hover,
+    .ivu-menu-submenu-title:hover {
+      color: @siderbar-color-hover !important;
+    }
+    .ivu-menu-item-selected {
+      color: @siderbar-color-selected !important;
+    }
+    .ivu-menu-item {
+      background-color: transparent !important;
+      &:after {
+        width: 0 !important;
+      }
+    }
+  }
+</style>
+
 <style lang="less" scoped>
+  @import (reference) "../../assets/styles/common.less";
+
   .side-menu {
     display: flex;
     flex-direction: column;
     flex: 1;
     width: 200px;
+    font-weight: bold;
+    background-color: transparent;
     overflow: auto;
+    &:after {
+      width: 0 !important;
+    }
   }
 </style>

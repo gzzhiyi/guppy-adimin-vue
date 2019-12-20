@@ -14,8 +14,8 @@
     },
     data () {
       return {
-        logo: 'https://www.huolala.cn/rs/img/img_nav_logo.png',
-        minLogo: require('../../assets/images/logo_min.png')
+        logo: '',
+        minLogo: ''
       }
     }
   }

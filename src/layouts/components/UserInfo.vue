@@ -10,7 +10,7 @@
     <Avatar
       :src="avatorPath"
       class="user-info__avatar"
-      size="40"
+      size="36"
     />
     <div
       v-show="!shrink"
@@ -107,12 +107,13 @@
   @import (reference) "../../assets/styles/common.less";
 
   .user-info {
-    position: absolute;
-    top: 0;
-    right: 0;
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 70px;
     cursor: pointer;
     &:hover {
       background-color: rgba(0, 0, 0, .05);
@@ -123,7 +124,7 @@
     &__name {
       display: inline-flex;
       width: 100px;
-      color: #1890ff;
+      font-weight: bold;
       text-overflow: ellipsis;
       text-align: right;
       word-break: keep-all;

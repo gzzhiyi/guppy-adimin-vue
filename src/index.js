@@ -7,6 +7,7 @@ import { router } from './router/index'
 import App from './App'
 import '@services/axiosConfig'
 import 'view-design/dist/styles/iview.css'
+import './assets/styles/theme.less'
 import './assets/styles/style.less'
 
 /** Vue 相关 */
