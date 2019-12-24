@@ -157,6 +157,7 @@
     height: 70px;
     padding-left: 200px;
     background-color: @header-bg-color;
+    border-bottom: 1px #e9e9e9 solid;
     &--shrink {
       padding-left: 60px;
     }

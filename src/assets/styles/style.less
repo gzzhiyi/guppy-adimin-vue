@@ -1,3 +1,4 @@
+@import "./theme.less";
 @import "./common.less";
 
 /**
@@ -12,6 +13,27 @@ body {
   overflow: hidden;
 }
 
-.ivu-btn-primary {
-  box-shadow: 0 2px 6px 0 rgba(114,124,245,.5);
+/**
+ * iView UI Reset
+ */
+.ivu-page {
+  margin-top: 16px;
+  text-align: right;
+}
+
+.ivu-table th {
+  background-color: transparent;
+  border-width: 2px;
+}
+
+.ivu-modal {
+  &-header {
+    border-bottom: none;
+  }
+  &-content {
+    border-radius: 2px;
+  }
+  &-footer {
+    border-top: none;
+  }
 }

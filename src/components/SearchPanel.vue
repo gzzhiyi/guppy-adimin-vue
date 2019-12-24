@@ -10,7 +10,10 @@
 <script>
   export default {
     props: {
-      visible: true
+      visible: {
+        type: Boolean,
+        default: true
+      }
     },
     methods: {}
   }
@@ -19,5 +22,9 @@
 <style lang="less" scoped>
   @import (reference) "../assets/styles/common.less";
 
-  .search-panel {}
+  .search-panel {
+    margin-bottom: @spacing-base;
+    padding: @spacing-base;
+    background-color: #f7f7f7;
+  }
 </style>

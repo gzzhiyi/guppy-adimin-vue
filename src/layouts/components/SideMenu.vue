@@ -94,14 +94,15 @@
     .ivu-menu-submenu-title:hover {
       color: @siderbar-color-hover !important;
     }
-    .ivu-menu-item-selected {
-      color: @siderbar-color-selected !important;
-    }
     .ivu-menu-item {
       background-color: transparent !important;
       &:after {
         width: 0 !important;
       }
+    }
+    .ivu-menu-item-selected {
+      color: @siderbar-color-selected !important;
+      background-color: #555 !important;
     }
   }
 </style>

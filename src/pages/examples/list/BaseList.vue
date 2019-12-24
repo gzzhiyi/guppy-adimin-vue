@@ -1,53 +1,117 @@
 <template>
   <Container>
+    <!-- Header -->
     <Header>
-      <Button type="primary" @click="handleAdd">
-        <Icon type="md-add" />
-        添加
-      </Button>
-      <Button @click="handleToggleSearch">
-        <Icon type="md-search" />
-        搜索
-      </Button>
+      <Button type="primary" @click="handleAdd">添加</Button>
+      <Button type="error" @click="handleBatchDel">批量删除</Button>
     </Header>
 
-    <SearchPanel :visible="searchVisible">
-      <Form :label-width="50" inline>
-        <FormItem label="工号">
-          <Input v-model="searchForm.no" type="text" />
+    <!-- Search -->
+    <SearchPanel>
+      <Input v-model="searchForm.no" type="text" placeholder="工号" style="width: 200px" />
+      <Input v-model="searchForm.name" type="text" placeholder="姓名" style="width: 200px" />
+      <Select v-model="searchForm.sex" style="width:120px">
+        <Option :value="1" :key="1">男</Option>
+        <Option :value="2" :key="2">女</Option>
+      </Select>
+      <Button
+        type="primary"
+        @click="handleSearch"
+      >
+        搜索
+      </Button>
+      <Button
+        @click="handleClear"
+      >
+        清空
+      </Button>
+    </SearchPanel>
+
+    <!-- Table -->
+    <Table
+      ref="table"
+      :columns="columns"
+      :data="list"
+      :loading="loading"
+      @on-selection-change="onSelect"
+      stripe
+    />
+
+    <!-- Pager -->
+    <Page
+      :total="total"
+      :page-size="pageSize"
+      show-total
+      show-elevator
+      @on-change="onPageChange"
+      @on-page-size-change="onPageSizeChange"
+    />
+
+    <!-- Form -->
+    <Modal
+      v-model="formVisible"
+      :title="`${formStatus === 'add' ? '添加' : '编辑'}用户`"
+      :mask-closable="false"
+    >
+      <Form
+        ref="formItem"
+        :model="formItem"
+        :label-width="80"
+      >
+        <FormItem
+          prop="name"
+          label="姓名"
+          required
+        >
+          <Input
+            type="text"
+            v-model="formItem.name"
+          />
         </FormItem>
-        <FormItem label="姓名">
-          <Input v-model="searchForm.name" type="text" />
-        </FormItem>
-        <FormItem label="性别">
-          <Select v-model="searchForm.sex" style="width:80px">
+        <FormItem
+          prop="sex"
+          label="性别"
+          required
+        >
+          <Select
+            v-model="formItem.sex"
+            style="width:120px"
+          >
             <Option :value="1" :key="1">男</Option>
             <Option :value="2" :key="2">女</Option>
           </Select>
         </FormItem>
-        <Button
-          type="error"
-          @click="handleClear"
+        <FormItem
+          prop="email"
+          label="电子邮箱"
+          required
         >
-          清空
-        </Button>
+          <Input
+            type="text"
+            v-model="formItem.email"
+          />
+        </FormItem>
+        <FormItem
+          prop="dep"
+          label="部门"
+          required
+        >
+          <Input
+            type="text"
+            v-model="formItem.dep"
+          />
+        </FormItem>
       </Form>
-    </SearchPanel>
-
-    <Card :bordered="false" :shadow="true">
-      <Table :columns="columns" :data="list" :loading="loading" />
-      <Page
-        :total="total"
-        :page-size="pageSize"
-        show-total
-        @on-change="onPageChange"
-        @on-page-size-change="onPageSizeChange"
-      />
-    </Card>
+      <div slot="footer">
+        <Button type="primary" @click="handleSubmit">确定</Button>
+      </div>
+    </Modal>
   </Container>
+
 </template>
 
 <script>
+  import { cloneDeep } from 'lodash'
   import Services from '@services'
   import Container from '@components/Container'
   import Header from '@components/Header'
@@ -66,6 +130,11 @@
     data () {
       const columns = [
         {
+          type: 'selection',
+          width: 60,
+          align: 'center'
+        },
+        {
           title: '工号',
           key: 'no'
         },
@@ -75,7 +144,20 @@
         },
         {
           title: '性别',
-          key: 'sex'
+          key: 'sex',
+          render: (h, params) => {
+            return h('span',
+              {
+                domProps: {
+                  textContent: params.row.sex === 1 ? '男' : '女'
+                }
+              }
+            )
+          }
+        },
+        {
+          title: '电子邮箱',
+          key: 'email'
         },
         {
           title: '部门',
@@ -104,7 +186,7 @@
                     this.handleEdit(params)
                   }
                 }
-              }, '修改')
+              }, '编辑')
             ])
           }
         }
@@ -116,33 +198,59 @@
         currentPage: 1,
         pageSize: 10,
         total: 0,
-        searchVisible: false,
+        selection: [],
         searchForm: {
           no: '',
           name: '',
           sex: 0
-        }
+        },
+        formVisible: false,
+        formStatus: '',
+        formItem: {}
       }
     },
     created () {
       this.getProjectList()
     },
     methods: {
-      handleAdd () {},
-      handleEdit () {},
-      handleToggleSearch () {
-        if (this.searchVisible) {
-          this.searchVisible = false
-        } else {
-          this.searchVisible = true
-        }
+      handleAdd () {
+        this.$refs.formItem.resetFields()
+        this.formItem = {}
+        this.formStatus = 'add'
+        this.formVisible = true
       },
+      handleEdit (params) {
+        this.formStatus = 'edit'
+        this.formItem = cloneDeep(params.row)
+        this.formVisible = true
+      },
+      handleSearch () {},
       handleClear () {
         this.searchForm = {
           no: '',
           name: '',
           sex: 0
         }
+      },
+      handleSubmit () {
+        this.$refs.formItem.validate(valid => {
+          if (valid) {
+            this.$Message.success('Success!')
+            this.formVisible = false
+          } else {
+            this.$Message.error('Fail!')
+          }
+        })
+      },
+      handleBatchDel () {
+        this.$Modal.confirm({
+          title: '批量删除用户',
+          content: '是否确认删除改记录？',
+          onOk: () => {}
+        })
+      },
+      onSelect (selection) {
+        this.selection = selection
       },
       /**
        * 换页
@@ -164,7 +272,6 @@
        */
       async getProjectList () {
         this.loading = true
-
         try {
           const res = await Services.getList({
             page_no: this.currentPage,
@@ -192,6 +299,7 @@
             no,
             name,
             sex,
+            email,
             dep,
             create_time: createTime,
             update_time: updateTime
@@ -202,6 +310,7 @@
             no,
             name,
             sex,
+            email,
             dep,
             createTime,
             updateTime
