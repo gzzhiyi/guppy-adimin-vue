@@ -10,9 +10,9 @@
   $ npm install guppy-admin-cli -g
 ```
 
-进入创建项目的所在目录，执行命令
+进入创建项目的所在目录，执行命令，按控制台提示进行操作
 ```
-  $ guppy-admin-cli init // 按控制台提示进行操作
+  $ guppy-admin-cli init
 ```
 
 ### 手动安装
@@ -21,7 +21,7 @@
   $ git clone https://github.com/gzzhiyi/guppy-adimin-vue.git
 ```
 
-安装
+安装依赖
 ```
   $ npm install
 ```
@@ -30,5 +30,9 @@
 ```
   npm run dev // 默认在 localhost:8088 进行热重载
   npm run dev:mock // Mock 数据，默认使用 localhost:3000 端口
+```
+
+### 打包
+```
   npm run build // 构建生产
 ```
