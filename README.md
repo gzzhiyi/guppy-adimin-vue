@@ -3,7 +3,7 @@
 
 ### 相关依赖
 <img src="https://img.shields.io/badge/vue-2.5.16-brightgreen.svg">
-<img src="https://img.shields.io/badge/view-design-4.0.0-green.svg">
+<img src="https://img.shields.io/badge/iview-4.0.0-green.svg">
 
 ### 自动安装
 使用 npm 全局安装
@@ -24,7 +24,7 @@
 ### 手动安装
 获取项目
 ```
-  $ git clone https://github.com/iview/iview-admin.git
+  $ git clone https://github.com/gzzhiyi/guppy-adimin-vue.git
 ```
 
 npm 安装
