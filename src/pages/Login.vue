@@ -91,7 +91,6 @@
       width: 140px;
       height: 50px;
       margin: 50px auto 10px;
-      background: url('https://www.huolala.cn/rs/img/img_nav_logo.png') no-repeat;
       background-size: 100%;
     }
     &__slogo {

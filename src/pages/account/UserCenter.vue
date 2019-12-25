@@ -44,7 +44,7 @@
     },
     data () {
       return {
-        avatorPath: require('../../assets/images/avatar@2x.png')
+        avatorPath: ''
       }
     },
     methods: {

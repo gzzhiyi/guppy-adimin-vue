@@ -45,7 +45,7 @@
         return this.$store.state.app.currentPath // 当前面包屑数组
       },
       avatorPath () {
-        return this.$store.state.app.avatorImgPath || require('../../assets/images/avatar@2x.png')
+        return this.$store.state.app.avatorImgPath || ''
       }
     },
     created () {

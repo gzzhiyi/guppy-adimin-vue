@@ -104,7 +104,12 @@
       width: 60px;
       height: auto;
       padding: 10px 0;
+      color: @siderbar-color !important;
       border-radius: 0;
+      &:hover {
+        color: @siderbar-color-selected !important;
+        background-color: #555 !important;
+      }
     }
   }
 
