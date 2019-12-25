@@ -1,69 +1,65 @@
 <template>
   <Container>
-    <Content>
-      <Form
-        :label-width="80"
-        :model="form"
-        :rules="rules"
-        class="form"
-        ref="form"
+    <Form
+      :label-width="80"
+      :model="form"
+      :rules="rules"
+      class="form"
+      ref="form"
+    >
+      <FormItem
+        label="用户名"
+        prop="userName"
       >
-        <FormItem
-          label="用户名"
-          prop="userName"
-        >
-          <Input
-            v-model="form.userName"
-            type="text"
-            placeholder="请输入用户名"
-          />
-        </FormItem>
-        <FormItem
-          label="密码"
-          prop="password"
-        >
-          <Input
-            v-model="form.password"
-            type="password"
-            placeholder="请输入密码"
-          />
-        </FormItem>
-        <FormItem
-          label="邮箱"
-          prop="email"
-        >
-          <Input
-            v-model="form.email"
-            type="text"
-            placeholder="请输入邮箱"
-          />
-        </FormItem>
-        <FormItem
-          label="介绍"
-          prop="desc"
-        >
-          <Input
-            v-model="form.desc"
-            type="text"
-            placeholder="请输入介绍"
-          />
-        </FormItem>
-        <FormItem>
-          <Button type="primary">修改</Button>
-        </FormItem>
-      </Form>
-    </Content>
+        <Input
+          v-model="form.userName"
+          type="text"
+          placeholder="请输入用户名"
+        />
+      </FormItem>
+      <FormItem
+        label="密码"
+        prop="password"
+      >
+        <Input
+          v-model="form.password"
+          type="password"
+          placeholder="请输入密码"
+        />
+      </FormItem>
+      <FormItem
+        label="邮箱"
+        prop="email"
+      >
+        <Input
+          v-model="form.email"
+          type="text"
+          placeholder="请输入邮箱"
+        />
+      </FormItem>
+      <FormItem
+        label="介绍"
+        prop="desc"
+      >
+        <Input
+          v-model="form.desc"
+          type="text"
+          placeholder="请输入介绍"
+        />
+      </FormItem>
+      <FormItem>
+        <Button type="primary">修改</Button>
+      </FormItem>
+    </Form>
   </Container>
 </template>
 
 <script>
   import Container from '@components/Container'
-  import Content from '@components/Content'
 
   export default {
     components: {
-      Container,
-      Content
+      Container
     },
     data () {
       return {

@@ -2,57 +2,41 @@ import BaseLayout from '@/layouts/BaseLayout.vue'
 
 export default [
   {
-    path: '/list',
-    name: 'list',
-    title: '列表页',
-    icon: 'md-list',
-    component: BaseLayout,
-    children: [
-      {
-        path: '/base_list',
-        name: 'base_list',
-        icon: 'md-list',
-        title: '标准列表',
-        component: () => import('@/pages/examples/list/BaseList.vue')
-      }
-    ]
-  },
-  {
     path: '/form',
     name: 'form',
-    title: '表单页',
-    icon: 'md-list',
+    title: '表格',
+    icon: 'md-paper',
     component: BaseLayout,
     children: [
       {
-        path: '/base_form',
-        name: 'base_form',
-        icon: 'md-list',
-        title: '标准表单',
-        component: () => import('@/pages/examples/form/BaseForm.vue')
-      },
-      {
-        path: '/step_form',
-        name: 'step_form',
-        icon: 'md-list',
-        title: '标准表单',
-        component: () => import('@/pages/examples/form/StepForm.vue')
+        path: '/form_elements',
+        name: 'form_elements',
+        icon: 'md-paper',
+        title: '表单组件',
+        component: () => import('@/pages/examples/form/FormElements.vue')
       }
     ]
   },
   {
-    path: '/detail',
-    name: 'detail',
-    title: '详情页',
-    icon: 'md-list',
+    path: '/table',
+    name: 'table',
+    title: '表格',
+    icon: 'md-list-box',
     component: BaseLayout,
     children: [
       {
-        path: '/base_detail',
-        name: 'base_detail',
-        icon: 'md-list',
-        title: '标准详情',
-        component: () => import('@/pages/examples/detail/BaseDetail.vue')
+        path: '/basic_table',
+        name: 'basic_table',
+        icon: 'md-list-box',
+        title: '标准表格',
+        component: () => import('@/pages/examples/table/BasicTable.vue')
+      },
+      {
+        path: '/general_table',
+        name: 'general_table',
+        icon: 'md-list-box',
+        title: '综合表格',
+        component: () => import('@/pages/examples/table/GeneralTable.vue')
       }
     ]
   }

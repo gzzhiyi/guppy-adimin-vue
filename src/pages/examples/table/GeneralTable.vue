@@ -6,7 +6,7 @@
       <Button type="error" @click="handleBatchDel">批量删除</Button>
     </Header>
 
-    <!-- Search -->
+    <!-- Search Panel -->
     <SearchPanel>
       <Input v-model="searchForm.no" type="text" placeholder="工号" style="width: 200px" />
       <Input v-model="searchForm.name" type="text" placeholder="姓名" style="width: 200px" />
@@ -115,7 +115,6 @@
   import Services from '@services'
   import Container from '@components/Container'
   import Header from '@components/Header'
-  import Content from '@components/Content'
   import Footer from '@components/Footer'
   import SearchPanel from '@components/SearchPanel'
 
@@ -123,7 +122,6 @@
     components: {
       Container,
       Header,
-      Content,
       Footer,
       SearchPanel
     },
