@@ -1,5 +1,5 @@
 # Guppy Admin
-基于 vue.js、view-design 下开发的后台管理系统模板
+基于 vue.js、iViewUI 下开发的后台管理系统模板
 
 ### 相关依赖
 <img src="https://img.shields.io/badge/vue-2.5.16-brightgreen.svg"> <img src="https://img.shields.io/badge/iview-4.0.0-green.svg">

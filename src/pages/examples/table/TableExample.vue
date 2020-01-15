@@ -142,10 +142,11 @@
 
 <style lang="less" scoped>
   h2 {
-    margin: 40px 0 20px;
+    margin: 50px 0 20px;
     padding-left: 10px;
     font-size: 14px;
-    border-left: 8px #ddd solid;
+    line-height: 1;
+    border-left: 4px #ddd solid;
     &:first-child {
       margin-top: 10px;
     }

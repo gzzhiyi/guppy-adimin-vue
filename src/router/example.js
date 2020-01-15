@@ -68,18 +68,18 @@ export default [
     component: BaseLayout,
     children: [
       {
-        path: '/basic_table',
-        name: 'basic_table',
+        path: '/table_example',
+        name: 'table_example',
         icon: 'md-list-box',
-        title: '标准表格',
-        component: () => import('@/pages/examples/table/BasicTable.vue')
+        title: '表格示例',
+        component: () => import('@/pages/examples/table/TableExample.vue')
       },
       {
-        path: '/general_table',
-        name: 'general_table',
+        path: '/standard_table',
+        name: 'standard_table',
         icon: 'md-list-box',
-        title: '综合表格',
-        component: () => import('@/pages/examples/table/GeneralTable.vue')
+        title: '标准表格',
+        component: () => import('@/pages/examples/table/StandardTable.vue')
       }
     ]
   }
