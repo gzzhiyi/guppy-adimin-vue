@@ -9,7 +9,7 @@
           <VueEditor v-model="content"></VueEditor>
         </FormItem>
         <FormItem>
-          <Button type="primary" @click="handleClick">保存</Button>
+          <Button type="primary" size="large" @click="handleClick">保存</Button>
         </FormItem>
       </Form>
     </Card>
