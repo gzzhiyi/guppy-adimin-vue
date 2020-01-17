@@ -1,24 +1,27 @@
 <template>
   <Container>
-    <h2>基础表格</h2>
-    <Table
-      :columns="columns"
-      :data="list"
-    />
-
-    <h2>带条纹表格</h2>
-    <Table
-      :columns="columns"
-      :data="list"
-      stripe
-    />
-
-    <h2>带边框表格</h2>
-    <Table
-      :columns="columns"
-      :data="list"
-      border
-    />
+    <Tabs value="name1" type="card">
+      <TabPane label="基础表格" name="name1">
+        <Table
+          :columns="columns"
+          :data="list"
+        />
+      </TabPane>
+      <TabPane label="带条纹表格" name="name2">
+        <Table
+          :columns="columns"
+          :data="list"
+          stripe
+        />
+      </TabPane>
+      <TabPane label="带边框表格" name="name3">
+        <Table
+          :columns="columns"
+          :data="list"
+          border
+        />
+      </TabPane>
+    </Tabs>
   </Container>
 
 </template>
@@ -139,16 +142,3 @@
     }
   }
 </script>
-
-<style lang="less" scoped>
-  h2 {
-    margin: 50px 0 20px;
-    padding-left: 10px;
-    font-size: 14px;
-    line-height: 1;
-    border-left: 4px #ddd solid;
-    &:first-child {
-      margin-top: 10px;
-    }
-  }
-</style>

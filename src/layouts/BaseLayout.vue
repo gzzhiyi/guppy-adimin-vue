@@ -167,6 +167,9 @@
       &--on {
         transform: rotateZ(-90deg);
       }
+      &:focus {
+        box-shadow: none;
+      }
     }
   }
 

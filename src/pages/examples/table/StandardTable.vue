@@ -103,7 +103,8 @@
         </FormItem>
       </Form>
       <div slot="footer">
-        <Button type="primary" @click="handleSubmit">确定</Button>
+        <Button type="default" size="large" @click="handleCancel">取消</Button>
+        <Button type="primary" size="large" @click="handleSubmit">确定</Button>
       </div>
     </Modal>
   </Container>
@@ -221,6 +222,9 @@
         this.formStatus = 'edit'
         this.formItem = cloneDeep(params.row)
         this.formVisible = true
+      },
+      handleCancel () {
+        this.formVisible = false
       },
       handleSearch () {},
       handleClear () {

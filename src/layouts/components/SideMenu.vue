@@ -102,7 +102,7 @@
     }
     .ivu-menu-item-selected {
       color: @siderbar-color-selected !important;
-      background-color: #555 !important;
+      background-color: rgba(0, 0, 0, .05) !important;
     }
   }
 </style>

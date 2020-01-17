@@ -32,6 +32,29 @@ export default [
     ]
   },
   {
+    path: '/table',
+    name: 'table',
+    title: '表格',
+    icon: 'md-list-box',
+    component: BaseLayout,
+    children: [
+      {
+        path: '/table_example',
+        name: 'table_example',
+        icon: 'md-list-box',
+        title: '表格示例',
+        component: () => import('@/pages/examples/table/TableExample.vue')
+      },
+      {
+        path: '/standard_table',
+        name: 'standard_table',
+        icon: 'md-list-box',
+        title: '标准表格',
+        component: () => import('@/pages/examples/table/StandardTable.vue')
+      }
+    ]
+  },
+  {
     path: '/error',
     name: 'error',
     title: '错误异常',
@@ -57,29 +80,6 @@ export default [
         icon: 'md-bug',
         title: '错误-500',
         component: () => import('@/pages/error/500.vue')
-      }
-    ]
-  },
-  {
-    path: '/table',
-    name: 'table',
-    title: '表格',
-    icon: 'md-list-box',
-    component: BaseLayout,
-    children: [
-      {
-        path: '/table_example',
-        name: 'table_example',
-        icon: 'md-list-box',
-        title: '表格示例',
-        component: () => import('@/pages/examples/table/TableExample.vue')
-      },
-      {
-        path: '/standard_table',
-        name: 'standard_table',
-        icon: 'md-list-box',
-        title: '标准表格',
-        component: () => import('@/pages/examples/table/StandardTable.vue')
       }
     ]
   }

@@ -9,7 +9,7 @@
         <Input type="password" v-model="model3" />
 
         <h2>Text Area</h2>
-        <Input type="textarea" rows="3" />
+        <Input type="textarea" />
 
         <h2>Number</h2>
         <Input type="number" placeholder="仅限输入数字" />
